@@ -7,7 +7,7 @@ export default function Policy() {
     <div>
         <Navigation/>
         <div className='mt-16 md:mt-24'>
-
+            
         </div>
         <Footer/>
   </div>
