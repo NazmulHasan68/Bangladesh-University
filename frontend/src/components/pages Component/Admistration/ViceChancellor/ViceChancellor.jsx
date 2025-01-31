@@ -2,12 +2,12 @@ import React from 'react';
 
 export default function ViceChancellor() {
   return (
-    <div className="bg-gray-100 min-h-screen py-2 px-5 md:px-20">
+    <div className="bg-gray-100 min-h-screen py-2 px-2 md:px-20">
       <div className="max-w-6xl mx-auto bg-white shadow-lg rounded-lg p-8">
-        <h1 className="text-3xl font-bold text-center text-blue-700 mb-6">Message from the Vice-Chancellor</h1>
-        <p className="text-gray-600 text-center mt-2 mb-8">Bangladesh University</p>
+        <h1 className="text-xl md:text-3xl font-bold text-center text-blue-700 mb-6">Message from the Vice-Chancellor</h1>
+        <p className="text-gray-600 text-center mt-2 mb-4">Bangladesh University</p>
         
-        <div className="mt-6">
+        <div className="mt-4 text-xs md:text-sm">
           <p className="text-gray-700 leading-relaxed mb-4">
             Bangladesh University was set up in 2001 (October) in the prime location of Dhaka City near Asad Gate to provide higher education at an affordable cost. The Founder, Late Quazi Azher Ali, had a unique dream of imparting education to financially backward students from rural areas in Bangladesh.
           </p>
@@ -23,13 +23,13 @@ export default function ViceChancellor() {
         </div>
 
         {/* Office of the Vice-Chancellor */}
-        <div className="mt-8 bg-white p-6 rounded-lg px-4 overflow-x-auto">
-          <h2 className="text-xl font-semibold text-blue-800 mb-4">Office of the Vice-Chancellor</h2>
+        <div className="mt-8 bg-white p-2 rounded-lg px-2 overflow-x-auto">
+          <h2 className="md:text-xl text-sm font-semibold text-blue-800 mb-4">Office of the Vice-Chancellor</h2>
           <table className="min-w-full bg-white rounded-lg shadow-md">
             <thead>
               <tr className="border-b-2 bg-blue-200 border-gray-300">
-                <th className="px-6 py-3 text-left text-blue-800">Image</th>
-                <th className="px-6 py-3 text-left text-blue-800">Details</th>
+                <th className="px-6 py-3 md:text-md text-xs text-left text-blue-800">Image</th>
+                <th className="px-6 py-3 md:text-md text-xs text-left text-blue-800">Details</th>
               </tr>
             </thead>
             <tbody>
@@ -39,10 +39,10 @@ export default function ViceChancellor() {
                   <img src="https://picsum.photos/200/300?random=1" alt="Vice-Chancellor" className="w-40 md:w-full object-cover h-40 rounded-lg shadow-md" />
                 </td>
                 <td className="px-6 py-4">
-                  <p className="text-gray-800 font-medium text-lg">Professor Dr. Md. Jahangir Alam</p>
-                  <p className="text-gray-600 text-md">Vice-Chancellor (Acting)</p>
-                  <p className="text-gray-600 text-md">Email: <a href="mailto:vc@bu.edu.bd" className="text-blue-500 hover:underline">vc@bu.edu.bd</a></p>
-                  <p className="text-gray-600 text-md">Phone: 01755559300</p>
+                  <p className="text-gray-800 font-semibold line-clamp-1 text-md md:text-lg">Professor Dr. Md. Jahangir Alam</p>
+                  <p className="text-gray-600 text-xs md:text-md">Vice-Chancellor (Acting)</p>
+                  <p className="text-gray-600 text-xs md:text-md">Email: <a href="mailto:vc@bu.edu.bd" className="text-blue-500 hover:underline">vc@bu.edu.bd</a></p>
+                  <p className="text-gray-600 text-xs md:text-md">Phone: 01755559300</p>
                 </td>
               </tr>
 
@@ -52,9 +52,9 @@ export default function ViceChancellor() {
                   <img src="https://picsum.photos/200/300?random=2" alt="Director" className="w-40 md:w-full object-cover h-40 rounded-lg shadow-md" />
                 </td>
                 <td className="px-2 md:px-6 py-4">
-                  <p className="text-gray-800 font-medium text-lg">Professor Dr. Quazi Taif Sadat</p>
-                  <p className="text-gray-600 text-md">Director</p>
-                  <p className="text-gray-600 text-md">Email: <a href="mailto:taif@panbangla.com" className="text-blue-500 hover:underline">taif@panbangla.com</a></p>
+                  <p className="text-gray-800 font-semibold text-md md:text-lg">Professor Dr. Quazi Taif Sadat</p>
+                  <p className="text-gray-600 text-xs md:text-md">Director</p>
+                  <p className="text-gray-600 text-xs md:text-md">Email: <a href="mailto:taif@panbangla.com" className="text-blue-500 hover:underline">taif@panbangla.com</a></p>
                 </td>
               </tr>
 
@@ -64,10 +64,10 @@ export default function ViceChancellor() {
                   <img src="https://picsum.photos/200/300?random=3" alt="Office Assistant" className="w-40 md:w-full object-cover h-40 rounded-lg shadow-md" />
                 </td>
                 <td className="px-6 py-4">
-                  <p className="text-gray-800 font-medium text-lg">Khandakar Shahadat Hossain</p>
-                  <p className="text-gray-600 text-md">Office Assistant</p>
-                  <p className="text-gray-600 text-md">Email: <a href="mailto:kh.shahadathossain@outlook.com" className="text-blue-500 hover:underline">kh.shahadathossain@outlook.com</a></p>
-                  <p className="text-gray-600 text-md">Phone: 01755559329</p>
+                  <p className="text-gray-800 font-semibold text-md md:text-lg">Khandakar Shahadat Hossain</p>
+                  <p className="text-gray-600 text-xs md:text-md">Office Assistant</p>
+                  <p className="text-gray-600 text-xs md:text-md">Email: <a href="mailto:kh.shahadathossain@outlook.com" className="text-blue-500 hover:underline">kh.shahadathossain@outlook.com</a></p>
+                  <p className="text-gray-600 text-xs md:text-md">Phone: 01755559329</p>
                 </td>
               </tr>
             </tbody>

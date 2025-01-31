@@ -7,7 +7,7 @@ export default function History() {
           <img src={blogImage3} className='w-full h-full object-cover rounded-3xl'/>  
       </div>
       <div className='mt-16 md:mt-24'>
-        <h1 className='font-semibold text-xl text-center text-sky-800'>Welcome to Bangladesh University</h1>
+        <h1 className='font-semibold text-lg md:text-xl text-center text-sky-800'>Welcome to Bangladesh University</h1>
         <p className='text-xs md:text-md md:p-6 p-2 text-sky-950'>Bangladesh University (BU) started its journey in 2001. Since then it has been providing quality
              higher education at a minimum cost especially for the financially underprivileged. For more than 
              a decade, BU has been increasing and nurturing talent within the youth with modern knowledge and 

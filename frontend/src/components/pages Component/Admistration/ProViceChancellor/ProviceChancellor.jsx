@@ -2,12 +2,12 @@ import React from 'react';
 
 export default function ProviceChancellor() {
   return (
-    <div className="bg-gray-100 min-h-screen py-0 px-5 md:px-20">
+    <div className="bg-gray-100 min-h-screen py-0 px-2 md:px-20">
       <div className="max-w-4xl mx-auto bg-white shadow-lg rounded-lg p-8">
-        <h1 className="text-3xl font-bold text-center text-blue-700 mb-6">Message from the Pro-Vice-Chancellor</h1>
-        <p className="text-gray-600 text-center mt-2 mb-8">Bangladesh University</p>
+        <h1 className="md:text-3xl text-xl font-bold text-center text-blue-700 mb-6">Message from the Pro-Vice-Chancellor</h1>
+        <p className="text-gray-600 text-center mt-2 mb-4">Bangladesh University</p>
         
-        <div className="mt-6">
+        <div className="mt-2 md:text-sm text-xs">
           <p className="text-gray-700 leading-relaxed mb-4">
             It is a great pleasure for me to be a part of Bangladesh University (BU) as its first government appointed Pro-Vice-Chancellor. I take this opportunity to welcome students coming from all parts of the country and joining the university in undergraduate and postgraduate programmes, ranging from Arts to Sciences, Economics, and Business Management. The university is dedicated to imparting quality and value-based cutting-edge education to prepare our students competitive in the national as well as in the global workforce market.
           </p>
@@ -24,13 +24,13 @@ export default function ProviceChancellor() {
         </div>
 
         {/* Office of the Pro-Vice-Chancellor */}
-        <div className="mt-8 bg-white p-6 rounded-lg px-4 overflow-x-auto">
-          <h2 className="text-xl font-semibold text-blue-800 mb-4">Office of the Pro-Vice-Chancellor</h2>
+        <div className="mt-8 bg-white p-2 rounded-lg px-4 overflow-x-auto">
+          <h2 className="md:text-xl text-sm font-semibold text-blue-800 mb-4">Office of the Pro-Vice-Chancellor</h2>
           <table className="min-w-full bg-white rounded-lg ">
             <thead>
               <tr className="border-b-2 bg-sky-400  border-gray-300">
-                <th className="px-6 py-3 text-left text-gray-50">Image</th>
-                <th className="px-6 py-3 text-left text-gray-50">Details</th>
+                <th className="px-6 py-2 text-xs md:text-sm text-left text-gray-50">Image</th>
+                <th className="px-6 py-2 text-xs md:text-sm text-left text-gray-50">Details</th>
               </tr>
             </thead>
             <tbody>
@@ -40,10 +40,10 @@ export default function ProviceChancellor() {
                   <img src="https://picsum.photos/200/300?random=4" alt="Pro-Vice-Chancellor" className="w-40 h-36 rounded-lg shadow-md" />
                 </td>
                 <td className="px-6 py-4">
-                  <p className="text-gray-800 font-medium text-lg">Professor Dr. Md. Jahangir Alam</p>
-                  <p className="text-gray-600 text-md">Pro-Vice-Chancellor</p>
-                  <p className="text-gray-600 text-md">Email: <a href="mailto:vc@bu.edu.bd" className="text-blue-500 hover:underline">vc@bu.edu.bd</a></p>
-                  <p className="text-gray-600 text-md">Phone: 01755559300</p>
+                  <p className="text-gray-800 font-semibold text-sm md:text-lg line-clamp-1 ">Professor Dr. Md. Jahangir Alam</p>
+                  <p className="text-gray-600 text-xs md:text-md">Pro-Vice-Chancellor</p>
+                  <p className="text-gray-600 text-xs md:text-md">Email: <a href="mailto:vc@bu.edu.bd" className="text-blue-500 hover:underline">vc@bu.edu.bd</a></p>
+                  <p className="text-gray-600 text-xs md:text-md">Phone: 01755559300</p>
                 </td>
               </tr>
 
@@ -53,10 +53,10 @@ export default function ProviceChancellor() {
                   <img src="https://picsum.photos/200/300?random=5" alt="Office Assistant" className="w-40 h-36 rounded-lg shadow-md" />
                 </td>
                 <td className="px-6 py-4">
-                  <p className="text-gray-800 font-medium text-lg">Khandakar Shahadat Hossain</p>
-                  <p className="text-gray-600 text-md">Office Assistant</p>
-                  <p className="text-gray-600 text-md">Email: <a href="mailto:kh.shahadathossain@outlook.com" className="text-blue-500 hover:underline">kh.shahadathossain@outlook.com</a></p>
-                  <p className="text-gray-600 text-md">Phone: 01755559329</p>
+                  <p className="text-gray-800 font-semibold text-sm md:text-lg line-clamp-1 ">Khandakar Shahadat Hossain</p>
+                  <p className="text-gray-600 text-xs md:text-md">Office Assistant</p>
+                  <p className="text-gray-600 text-xs md:text-md">Email: <a href="mailto:kh.shahadathossain@outlook.com" className="text-blue-500 hover:underline">kh.shahadathossain@outlook.com</a></p>
+                  <p className="text-gray-600 text-xs md:text-md">Phone: 01755559329</p>
                 </td>
               </tr>
             </tbody>

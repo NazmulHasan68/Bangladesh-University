@@ -13,7 +13,7 @@ export default function FounderHeroSection() {
   };
 
   return (
-    <div className="news-event-hero-section max-w-7xl mx-auto md:mt-24 mt-16">
+    <div className="news-event-hero-section max-w-7xl mx-6 md:mx-auto md:mt-24 mt-16">
       <Slider {...settings}>
 
         <div className="relative">

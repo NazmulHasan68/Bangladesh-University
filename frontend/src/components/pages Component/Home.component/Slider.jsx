@@ -21,7 +21,7 @@ export default function Slider() {
   const plugin = React.useRef(CarouselPlugin());
 
   return (
-    <div className="w-full h-48 mt-16 md:mt-24 md:h-[300px] ">
+    <div className="w-full mx-2 h-48 mt-16 md:mt-24 md:h-[300px] ">
       <Carousel
         plugins={[plugin.current]}
         className="w-full"

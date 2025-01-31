@@ -9,11 +9,12 @@ export default function MissionCompoent() {
     infinite: true,
     speed: 500,
     slidesToShow: 1,
-    slidesToScroll: 1
+    slidesToScroll: 1,
+    arrows: false
   };
 
   return (
-    <div className="news-event-hero-section max-w-7xl mx-auto md:mt-24 mt-16">
+    <div className="news-event-hero-section max-w-7xl mx-2 md:mx-auto md:mt-24 mt-16">
       <Slider {...settings}>
 
         <div className="relative">
@@ -23,7 +24,7 @@ export default function MissionCompoent() {
             className="w-full md:h-[250px] h-[200px] rounded-lg shadow-lg"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black to-transparent flex flex-col justify-center items-center text-white text-center p-8 rounded-lg">
-            <h1 className="md:text-5xl text-2xl font-extrabold drop-shadow-lg">MIssion of Bangladesn University</h1>
+            <h1 className="md:text-5xl text-xl font-extrabold drop-shadow-lg">MIssion of Bangladesn University</h1>
             <p className="mt-4 text-sm md:text-xl font-medium drop-shadow-lg">stay with us</p>
           </div>
         </div>

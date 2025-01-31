@@ -7,7 +7,7 @@ export default function Vice_chancellor() {
   return (
     <div>
       <Navigation/>
-      <div className='mt-16 md:mt-24'>
+      <div className='mt-12 md:mt-20'>
         <ViceChancellor/>
       </div>
       <Footer/>

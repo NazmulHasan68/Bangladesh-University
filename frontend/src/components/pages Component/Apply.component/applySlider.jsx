@@ -25,6 +25,7 @@ export default function ApplySlider() {
     autoplay: true,
     autoplaySpeed: 2000,
     centerMode: true,
+    arrows: false,
     centerPadding: '20px',
     responsive: [
       { breakpoint: 1024, settings: { slidesToShow: 2 } },

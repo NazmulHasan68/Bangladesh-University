@@ -15,7 +15,7 @@ export default function LeaderDescription() {
         <p className="text-center text-gray-500 ">Ads coming...</p>
       </div>
       <div className="basis-3/4">
-        <h1 className="p-4 text-gray-700 text-xl font-semibold">
+        <h1 className="p-4 text-gray-600 text-sm py-10 md:text-xl ">
           Bangladesh University’s leadership provides strategic direction and guidance to achieve the university’s long-term goals, fostering innovation and an inclusive academic environment.
         </h1>
         {leaders.map((leader, index) => (
