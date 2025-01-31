@@ -96,26 +96,26 @@ const Academic = [
   {
     title: "Faculty of Science and Engineering And Technology",
     parts: [
-      { subject: "Computer Science and Engineering (CSE)", link: "cse" },
-      { subject: "Mathematics", link: "math" },
-      { subject: "Pharmacy", link: "pharmacy" },
-      { subject: "Electrical and Electronics Engineering (EEE)", link: "eee" },
-      { subject: "Architecture", link: "archi" },
+      { subject: "Computer Science and Engineering (CSE)", link: "https://cse.bu.edu.bd/home" },
+      { subject: "Mathematics", link: "https://cse.bu.edu.bd/home" },
+      { subject: "Pharmacy", link: "https://cse.bu.edu.bd/home" },
+      { subject: "Electrical and Electronics Engineering (EEE)", link: "https://cse.bu.edu.bd/home" },
+      { subject: "Architecture", link: "https://cse.bu.edu.bd/home" },
     ],
   },
   {
     title: "Faculty of Arts, Social Science, and Law",
     parts: [
-      { subject: "English", link: "english" },
-      { subject: "Sociology", link: "sociology" },
-      { subject: "Law", link: "law" },
+      { subject: "English", link: "https://cse.bu.edu.bd/home" },
+      { subject: "Sociology", link: "https://cse.bu.edu.bd/home" },
+      { subject: "Law", link: "https://cse.bu.edu.bd/home" },
     ],
   },
   {
     title: "Faculty of Business Administration and Economics",
     parts: [
-      { subject: "Business Administration", link: "bba" },
-      { subject: "Economics", link: "economics" },
+      { subject: "Business Administration", link: "https://cse.bu.edu.bd/home" },
+      { subject: "Economics", link: "https://cse.bu.edu.bd/home" },
     ],
   },
 ];
@@ -270,12 +270,12 @@ export default function Navigation() {
               </NavigationMenuItem>
 
               <NavigationMenuItem>
-                <Link to="/docs">
+                <Link to="/certificate">
                   <NavigationMenuLink className={navigationMenuTriggerStyle()}>Certificate</NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <Link to="/docs">
+                <Link to="/portal">
                   <NavigationMenuLink className={navigationMenuTriggerStyle()}>Portal</NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
@@ -311,16 +311,16 @@ export default function Navigation() {
                         <AccordionTrigger>Academic</AccordionTrigger>
                         <AccordionContent>
                           <ul className="text-left grid grid-cols-2 gap-2">
-                            <Link to={'/cse'} className="text-gray-400 hover:text-red-400 shadow-md p-3">CSE</Link>
-                            <Link to={'/eee'} className="text-gray-400 hover:text-red-400 shadow-md p-3">EEE</Link>
-                            <Link to={'/pharmacy'} className="text-gray-400 hover:text-red-400 shadow-md p-3">Pharmacy</Link>
-                            <Link to={'/math'} className="text-gray-400 hover:text-red-400 shadow-md p-3">Math</Link>
-                            <Link to={'/english'} className="text-gray-400 hover:text-red-400 shadow-md p-3">English</Link>
-                            <Link to={'/law'} className="text-gray-400 hover:text-red-400 shadow-md p-3">LLB</Link>
-                            <Link to={'/socology'} className="text-gray-400 hover:text-red-400 shadow-md p-3">Socology</Link>
-                            <Link to={'/bba'} className="text-gray-400 hover:text-red-400 shadow-md p-3">BBA</Link>
-                            <Link to={'/economic'} className="text-gray-400 hover:text-red-400 shadow-md p-3">Economic</Link>
-                            <Link to={'/arch shadow-md p-3'} className="text-gray-400 hover:text-red-400 shadow-md p-3">Arch.</Link>
+                            <Link to={'/https://cse.bu.edu.bd/home'} className="text-gray-400 hover:text-red-400 shadow-md p-3">CSE</Link>
+                            <Link to={'/https://cse.bu.edu.bd/home'} className="text-gray-400 hover:text-red-400 shadow-md p-3">EEE</Link>
+                            <Link to={'/https://cse.bu.edu.bd/home'} className="text-gray-400 hover:text-red-400 shadow-md p-3">Pharmacy</Link>
+                            <Link to={'/https://cse.bu.edu.bd/home'} className="text-gray-400 hover:text-red-400 shadow-md p-3">Math</Link>
+                            <Link to={'/https://cse.bu.edu.bd/home'} className="text-gray-400 hover:text-red-400 shadow-md p-3">English</Link>
+                            <Link to={'/https://cse.bu.edu.bd/home'} className="text-gray-400 hover:text-red-400 shadow-md p-3">LLB</Link>
+                            <Link to={'/https://cse.bu.edu.bd/home'} className="text-gray-400 hover:text-red-400 shadow-md p-3">Socology</Link>
+                            <Link to={'/https://cse.bu.edu.bd/home'} className="text-gray-400 hover:text-red-400 shadow-md p-3">BBA</Link>
+                            <Link to={'/https://cse.bu.edu.bd/home'} className="text-gray-400 hover:text-red-400 shadow-md p-3">Economic</Link>
+                            <Link to={'/https://cse.bu.edu.bd/home'} className="text-gray-400 hover:text-red-400 shadow-md p-3">Arch.</Link>
                           </ul>
                         </AccordionContent>
                       </AccordionItem>

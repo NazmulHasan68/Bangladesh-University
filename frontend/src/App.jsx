@@ -31,6 +31,9 @@ import Register from './pages/Admistration/Register';
 import ExamController from './pages/Admistration/ExamController';
 import Treasusrer from './pages/Admistration/Treasusrer';
 import Founders from './pages/about/Founders';
+import Certificate from './pages/Certificate';
+import Portal from './pages/Portal';
+import PortalmainContent from './components/pages Component/Portal.component/PortalmainContent';
 
 
 const appRouter = createBrowserRouter([
@@ -58,6 +61,15 @@ const appRouter = createBrowserRouter([
       { path: '/alumni', element:<Alumni/>},
       { path: '/career', element:<Career/>},
       { path: '/contact', element:<Contact/>},
+      { path: '/certificate', element:<Certificate/>},
+      { path: '/portal', element:<Portal/>,
+        children:[
+          {path : 'result', element:<PortalmainContent/>},
+          {path : 'profile', element:<PortalmainContent/>},
+          {path : 'courses', element:<PortalmainContent/>},
+          {path : 'settings', element:<PortalmainContent/>}
+        ]
+      },
       { path: '/blogs', element:<Blogs/>,
         children :[
           {path: 'dept', element:<Blogsection/>}

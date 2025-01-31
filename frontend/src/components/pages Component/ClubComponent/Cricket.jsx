@@ -24,11 +24,11 @@ export default function Cricket() {
   ];
 
   return (
-    <div className='mt-5'> 
+    <div className='mt-5 overflow-x-auto mx-1 text-slate-800'> 
         <div className='flex justify-between items-center gap-4'>
-            <p>100 students</p>
-            <input type='text' className='w-[40%] h-10 rounded-full pl-4 focus:ring-0  outline-none' placeholder='Search here'/>
-            <button className='px-4 py-2 bg-red-500 rounded-3xl text-white'>Add member</button>
+            <p className='text-xs md:text-sm'>100 students</p>
+            <input type='text' className='w-[40%] md:h-10 h-8 rounded-full pl-4 focus:ring-0  outline-none' placeholder='Search here'/>
+            <button className='md:px-4 px-2 py-2 bg-red-500 rounded-3xl text-xs text-white'>Add member</button>
         </div>
       <Table>
         <TableCaption>A list of cricket team members.</TableCaption>
