@@ -48,6 +48,7 @@ export default function NewsComponent() {
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
+    arrows: false,
     responsive: [
       {
         breakpoint: 1024,
@@ -73,7 +74,7 @@ export default function NewsComponent() {
             <div className="rounded-lg overflow-hidden shadow-lg bg-white">
               <img src={item.img} alt={item.title} className="w-full h-32 object-cover" />
               <div className="p-3">
-                <h2 className="md:text-2xl text-xl font-bold mb-1 line-clamp-1">{item.title}</h2>
+                <h2 className="md:text-2xl text-md font-bold mb-1 line-clamp-1">{item.title}</h2>
                 <p className="text-gray-600 mb-2">{item.date}</p>
                 <p className="text-gray-700 mb-2">{item.description}</p>
                 <a href={`/${item.link}`} className="text-blue-500 hover:underline mt-1 block">Read More</a>

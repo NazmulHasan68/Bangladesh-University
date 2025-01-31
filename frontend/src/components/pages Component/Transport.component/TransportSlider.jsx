@@ -22,7 +22,7 @@ export default function TransportSlider() {
     autoplaySpeed: 2500,
     centerMode: true,
     centerPadding: '40px',
-    arrows: true,
+    arrows: false,
     responsive: [
       { breakpoint: 1024, settings: { slidesToShow: 2 } },
       { breakpoint: 768, settings: { slidesToShow: 1 } }

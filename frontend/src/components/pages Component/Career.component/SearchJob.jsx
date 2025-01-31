@@ -10,6 +10,7 @@ export default function SearchJob() {
     slidesToShow: 5,
     slidesToScroll: 1,
     autoplay: true,
+    arrows:false,
     autoplaySpeed: 2000,
     responsive: [
       {
@@ -24,7 +25,7 @@ export default function SearchJob() {
 
   return (
     <div className='max-w-7xl md:mx-auto mx-4 my-4'>
-      <h1 className='text-xl font-bold text-sky-800 py-3'>Search job here</h1>
+      <h1 className='md:text-xl text-lg font-bold text-sky-800 py-3'>Search job here</h1>
       <Slider {...settings}>
         <div className='p-2'>
           <Link to={'/'} className='md:px-10 px-4 p-2 md:p-4 rounded-xl bg-sky-500 text-red-200 block'>

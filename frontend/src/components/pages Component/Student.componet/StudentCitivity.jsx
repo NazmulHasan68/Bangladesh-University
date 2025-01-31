@@ -16,16 +16,16 @@ export default function StudentCitivity() {
   return (
     <div className='max-w-6xl md:mx-auto mx-4 py-10'> 
       <div>
-        <h1 className='text-xl font-bold py-6 text-red-400 '>Explore your creativity</h1>
+        <h1 className='md:text-xl text-lg font-bold py-6 text-red-400 '>Explore your creativity</h1>
       </div>
-      <div className='grid grid-cols-2 md:grid-cols-3 gap-4'>
+      <div className='grid grid-cols-2 md:grid-cols-3 gap-4 '>
         {citivity.map((item, index) => (
-          <div key={index} className='flex gap-6 items-center bg-slate-100 rounded-3xl shadow-md'>
+          <div key={index} className='flex gap-4 items-center bg-slate-100 rounded-3xl shadow-md'>
             <div className='md:w-20 w-16'>
               <img src={item.image} alt={item.name} className='md:w-20 w-16 object-cover rounded-xl' />
             </div>
             <div className='flex flex-col'>
-              <a href={item.link} className='md:text-xl text-sm font-semibold text-slate-800 hover:text-blue-500'>{item.name}</a>
+              <a href={item.link} className='md:text-xl pr-2 text-xs font-semibold text-slate-800 hover:text-blue-500'>{item.name}</a>
             </div>
           </div>
         ))}

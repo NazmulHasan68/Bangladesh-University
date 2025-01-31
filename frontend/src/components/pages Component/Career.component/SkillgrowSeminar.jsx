@@ -8,6 +8,7 @@ export default function SkillgrowSeminar() {
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
+    arrows:false,
     autoplay: true,
     autoplaySpeed: 3000,
     responsive: [
@@ -28,7 +29,7 @@ export default function SkillgrowSeminar() {
 
   return (
     <div className='max-w-7xl md:mx-auto mx-4 my-4 mt-10'>
-      <h1 className='text-center text-xl text-sky-800 font-semibold '>Skill Growth Seminar</h1>
+      <h1 className='text-center text-lg md:text-xl text-sky-800 font-semibold '>Skill Growth Seminar</h1>
       <div className=''>
         <Slider {...settings}>
           <div className='p-2'>

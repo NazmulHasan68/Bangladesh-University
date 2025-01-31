@@ -47,14 +47,14 @@ export default function LibraryDocument() {
         <div className='p-4'>
             <div className='flex justify-center items-center gap-4'>
                 <FaCircleUser className='text-4xl text-sky-800'/>
-                <h1 className='text-sky-900 text-2xl font-bold'>Library Membership</h1>
+                <h1 className='text-sky-900 text-xl md:text-2xl font-bold'>Library Membership</h1>
             </div>
             <div className='grid grid-cols-2 gap-2 my-4'>
-                <button className='px-4 rounded-xl py-2 bg-sky-900 text-white text-center text-sm'>Faculty Staff Membership<br/> Application</button>
-                <button className='px-4 rounded-xl py-2  bg-sky-900 text-white text-center text-sm'>Student Membership<br/> Application</button>
+                <button className='px-4 rounded-xl py-2 bg-sky-900 text-white text-center text-xs md:text-sm'>Faculty Staff Membership<br/> Application</button>
+                <button className='px-4 rounded-xl py-2  bg-sky-900 text-white text-center text-xs md:text-sm'>Student Membership<br/> Application</button>
             </div>
             <div className='py-10'>
-                <p className='texl-xl font-bold text-slate-600'>Unloack Future, one page at the time - Explore endless possiblities at Bangladesh University Library</p>
+                <p className='text-sm md:texl-xl font-bold text-slate-600'>Unloack Future, one page at the time - Explore endless possiblities at Bangladesh University Library</p>
             </div>
         </div>
         <div></div>

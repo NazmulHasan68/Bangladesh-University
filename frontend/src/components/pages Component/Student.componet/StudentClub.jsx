@@ -26,8 +26,8 @@ export default function StudentClub() {
   ];
 
   return (
-    <div className='max-w-4xl md:mx-auto mx-4 px-6 mb-4 rounded-3xl'>
-      <h1 className='text-red-400 text-xl font-bold py-4'>Explore your interest</h1>
+    <div className='max-w-4xl md:mx-auto mx-2 px-2 mb-4 rounded-3xl'>
+      <h1 className='text-red-400 text-lg md:text-xl font-bold py-4'>Explore your interest</h1>
       <div className='grid lg:grid-cols-5 md:grid-cols-4 grid-cols-3 gap-4'>
         {club.map((item, index) => (
           <Link to={item.link}

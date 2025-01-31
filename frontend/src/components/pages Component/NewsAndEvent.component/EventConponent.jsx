@@ -47,7 +47,7 @@ export default function EventComponent() {
             <div className="rounded-lg overflow-hidden shadow-lg bg-white">
               <img src={item.img} alt={item.name} className="w-full h-32 object-cover" />
               <div className="p-2">
-                <h2 className="md:text-2xl text-xl font-bold mb-1">{item.name}</h2>
+                <h2 className="md:text-2xl text-md font-bold mb-1">{item.name}</h2>
                 <p className="text-gray-600">{item.date}</p>
                 <a href={`/${item.link}`} className="text-blue-500 hover:underline mt-1 block">Learn More</a>
               </div>

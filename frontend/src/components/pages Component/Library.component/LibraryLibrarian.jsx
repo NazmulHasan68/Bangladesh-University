@@ -14,8 +14,8 @@ export default function LibraryLibrarian() {
     autoplay: true,
     autoplaySpeed: 2000,
     centerMode: true,
+    arrows: false,
     centerPadding: '20px', // Adjust for space
-    arrows: true,
     responsive: [
       { breakpoint: 1024, settings: { slidesToShow: 2, centerPadding: '30px' } },
       { breakpoint: 768, settings: { slidesToShow: 1, centerPadding: '20px' } }
@@ -33,9 +33,9 @@ export default function LibraryLibrarian() {
   return (
     <div className='max-w-5xl md:mx-auto mx-4'>
       <div>
-        <h1 className='text-center text-2xl font-semibold text-sky-800'>Librarian and Staff</h1>
+        <h1 className='text-center text-xl md:text-2xl font-semibold text-sky-800'>Librarian and Staff</h1>
         <div className='flex md:flex-row flex-col gap-4 justify-between items-center'>
-          <div className='text-slate-700 w-full md:w-1/2'>
+          <div className='text-sky-900 text-xs md:text-sm py-4 w-full md:w-1/2'>
             <p>Librarians provide access to information, promote lifelong learning, assist with research, engage communities, preserve culture, support creativity, ensure job security, manage digital resources, offer equal access, and contribute to societal growth.</p>
           </div>
           <div className='w-full md:w-1/2'>

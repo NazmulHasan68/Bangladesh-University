@@ -21,6 +21,7 @@ export default function ResearchAchievement() {
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 2,
+    arrows: false,
     responsive: [
       {
         breakpoint: 1024,
@@ -38,17 +39,17 @@ export default function ResearchAchievement() {
   };
 
   return (
-    <div className="max-w-7xl mx-auto p-4 bg-slate-100 my-5 rounded-2xl">
-      <h1 className='text-3xl font-bold text-sky-900 text-center'>Research Achievements</h1>
+    <div className="max-w-7xl mx-auto p-4 bg-slate-50 my-5 rounded-2xl">
+      <h1 className='md:text-2xl text-lg font-bold text-sky-900 text-center'>Research Achievements</h1>
       <Slider {...settings}>
         {achievements.map((item, index) => (
-          <div key={index} className="p-4">
+          <div key={index} className="p-2">
             <div className="rounded-lg overflow-hidden shadow-lg bg-white">
               <img src={item.img} alt={item.title} className="w-full h-32 object-cover" />
               <div className="p-2">
-                <h2 className="text-2xl font-bold mb-1 line-clamp-1">{item.title}</h2>
+                <h2 className="md:text-2xl text-lg font-bold md:mb-1 line-clamp-1">{item.title}</h2>
                 <p className="text-gray-600">{item.date}</p>
-                <a href={`/${item.link}`} className="text-blue-500 hover:underline mt-1 block">Learn More</a>
+                <a href={`/${item.link}`} className="text-blue-500 hover:underline md:mt-1 block">Learn More</a>
               </div>
             </div>
           </div>

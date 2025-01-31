@@ -11,7 +11,7 @@ export default function ReseachContent() {
         the MoU signed between the Computer Science and Engineering Department and 
         Grameen Phone, promoting such partnerships for mutual growth and innovation.</p>
 
-        <button className='px-4 py-2 rounded-3xl bg-red-400 text-white ml-[60%] md:ml-[85%] hover:bg-red-500'>Application from</button>
+        <button className='px-4 py-2 md:text-sm text-xs rounded-3xl bg-red-400 text-white ml-[55%] md:ml-[85%] hover:bg-red-500'>Application from</button>
     </div>
   )
 }

@@ -11,7 +11,7 @@ export default function TransportContent() {
         <p>01. Days: Sunday to Thursday</p>
         <p>02. Exclusions: Weekends, government holidays, and semester breaks</p>
         
-        <button className='px-8 mt-5 py-3 text-xs md:text-sm rounded-full bg-red-400 hover:bg-red-500 text-white ml-[55%] md:ml-[75%]'>Download Bus Schedule</button>
+        <button className='px-8 mt-5 py-3 text-xs md:text-sm rounded-full bg-red-400 hover:bg-red-500 text-white ml-[38%] sm:ml-[45%] md:ml-[75%]'>Download Bus Schedule</button>
     </div>
   )
 }

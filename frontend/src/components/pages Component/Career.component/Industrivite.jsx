@@ -3,7 +3,7 @@ import React from 'react';
 export default function Industrivite() {
   return (
     <div className='max-w-7xl md:mx-auto mx-4 my-4'>
-      <h1 className='text-center text-xl font-bold text-sky-700'>Industry Visit</h1>
+      <h1 className='text-center text-lg md:text-xl font-bold text-sky-700'>Industry Visit</h1>
       <div className='flex flex-col md:flex-row gap-4 justify-between items-center h-auto'>
         <div className=' basis-1/3 p-5 '>
           <img 
