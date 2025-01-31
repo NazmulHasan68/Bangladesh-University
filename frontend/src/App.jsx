@@ -30,6 +30,7 @@ import Vice_chancellor from './pages/Admistration/Vice_chancellor';
 import Provice_chancellor from './pages/Admistration/Provice_chancellor';
 import Register from './pages/Admistration/Register';
 import ExamController from './pages/Admistration/ExamController';
+import Treasusrer from './pages/Admistration/Treasusrer';
 
 
 const appRouter = createBrowserRouter([
@@ -47,7 +48,7 @@ const appRouter = createBrowserRouter([
       {path : '/offer', element:<Offers/>},
       {path : '/vice', element:<Vice_chancellor/>},
       {path : '/pro_vice', element:<Provice_chancellor/>},
-      {path : '/treasusrer', element:<Provice_chancellor/>},
+      {path : '/treasusrer', element:<Treasusrer/>},
       {path : '/register', element:<Register/>},
       {path : '/exam', element:<ExamController/>},
       { path: '/apply', element:<Apply/>},
