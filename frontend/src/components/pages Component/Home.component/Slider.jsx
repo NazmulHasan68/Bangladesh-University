@@ -26,8 +26,8 @@ export default function ImageSlider() {
   };
 
   return (
-    <div className="w-full mx-2 h-[180px] md:h-[250px] mt-16 md:mt-24">
-      <Slider {...settings} className="w-full h-full">
+    <div className="max-w-7xl md:mx-auto mx-2 h-[180px] md:h-[280px] mt-16 md:mt-24">
+      <Slider {...settings} className="w-full h-full overflow-hidden">
         {photos.map((photoSrc, index) => (
           <div key={index} className="w-full h-full">
             <img
