@@ -30,7 +30,7 @@ import Provice_chancellor from './pages/Admistration/Provice_chancellor';
 import Register from './pages/Admistration/Register';
 import ExamController from './pages/Admistration/ExamController';
 import Treasusrer from './pages/Admistration/Treasusrer';
-import Founders from './pages/about/founder';
+import Founders from './pages/about/Founders';
 
 
 const appRouter = createBrowserRouter([
