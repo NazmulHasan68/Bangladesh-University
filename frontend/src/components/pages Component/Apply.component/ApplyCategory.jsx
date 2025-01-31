@@ -36,8 +36,8 @@ export default function ApplyCategory() {
                         </div>
                         <div>
                             <h1 className='font-semibold text-sm md:text-xl text-sky-950 line-clamp-1'>{item.post}</h1>
-                            <p className='md:text-md text-xs font-medium py-1 line-clamp-2 md:line-clamp-3 '>{item.description}</p>
-                            <Link to={'/applyInput'} className='md:px-6 md:py-2 px-4 py-1 text-xs rounded-full hover:bg-red-500 bg-red-400 text-white ml-[50%] md:ml-[75%]'>Apply</Link>
+                            <p className='md:text-md text-xs font-medium py-1 line-clamp-2 md:line-clamp-3 py-1'>{item.description}</p>
+                            <Link to={'/applyInput'} className='md:px-6 md:py-2 px-4 py-1 text-xs rounded-full hover:bg-red-500 bg-red-400 text-white ml-[60%] mt-4 md:mt-10 md:ml-[75%]'>Apply</Link>
                         </div>
                     </div>
                 ))}

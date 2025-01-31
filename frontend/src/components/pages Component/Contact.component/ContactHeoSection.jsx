@@ -3,7 +3,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-export default function ContactHeoSection() {
+export default function ContactHeroSection() {
   const settings = {
     dots: true,
     infinite: true,
@@ -15,27 +15,27 @@ export default function ContactHeoSection() {
   };
 
   return (
-    <div className='max-w-7xl md:mx-auto mx-1 my-2 h-[200px] md:h-[250px] mt-16 md:mt-24'>
-      <Slider {...settings} className=' rounded-3xl overflow-hidden'>
+    <div className='max-w-7xl md:mx-auto mx-1 my-2 h-[180px] md:h-[250px] mt-16 md:mt-24'>
+      <Slider {...settings} className='rounded-xl overflow-hidden'>
         <div>
           <img
-            src='https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMDg1OXwwfDF8c2VhcmNofHx8fHx8fHwxNjEyNjk5NTU3&ixlib=rb-1.2.1&q=80&w=1080'
+            src='https://www.w3schools.com/w3images/lights.jpg'
             alt='Slide 1'
-            className='w-full h-[200px] md:h-[250px] rounded-md object-cover '
+            className='w-full h-[180px] md:h-[250px] rounded-md object-cover'
           />
         </div>
         <div>
           <img
-            src='https://images.unsplash.com/photo-1517356403495-0f4f463bcd6d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMDg1OXwwfDF8c2VhcmNofHx8fHx8fHwxNjEyNjk5NjU0&ixlib=rb-1.2.1&q=80&w=1080'
+            src='https://www.w3schools.com/w3images/forest.jpg'
             alt='Slide 2'
-            className='w-full h-[200px] md:h-[250px] rounded-md object-cover '
+            className='w-full h-[180px] md:h-[250px] rounded-md object-cover'
           />
         </div>
         <div>
           <img
-            src='https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMDg1OXwwfDF8c2VhcmNofHx8fHx8fHwxNjEyNjk5NjU0&ixlib=rb-1.2.1&q=80&w=1080'
+            src='https://www.w3schools.com/w3images/mountains.jpg'
             alt='Slide 3'
-            className='w-full h-[200px] md:h-[250px] rounded-md object-cover '
+            className='w-full h-[180px] md:h-[250px] rounded-md object-cover'
           />
         </div>
       </Slider>
