@@ -18,7 +18,7 @@ const events = [
 export default function FutureEventDate() {
   return (
     <div className="max-w-7xl md:mx-auto mx-4">
-      <h1 className="text-xl font-bold text-sky-900 py-4">Future Event Dates</h1>
+      <h1 className="md:text-xl text-sm font-bold text-sky-900 py-4">Future Event Dates</h1>
       <div>
         <Accordion type="single" collapsible className="w-full bg-slate-100 text-sky-900 p-4 rounded-xl">
           {events.map((event, index) => (

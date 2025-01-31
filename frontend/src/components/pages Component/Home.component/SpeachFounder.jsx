@@ -3,7 +3,7 @@ import { FaQuoteLeft, FaQuoteRight } from "react-icons/fa";
 
 export default function SpeachFounder() {
   return (
-    <div className="max-w-7xl mx-4 md:mx-auto md:my-12 my-10 px-6 flex bg-slate-50 p-2 rounded-xl gap-6 md:gap-24 items-center">
+    <div className="max-w-7xl mx-4 md:mx-auto md:my-12 my-5 px-6 flex bg-slate-50 p-2 rounded-xl gap-6 md:gap-24 items-center">
       <div className=" basis-3/4 text-center md:text-left">
         <blockquote className="italic text-2xl text-gray-800 rounded-lg md:p-8 p-2 relative">
           <FaQuoteLeft className="absolute left-0 top-1 transform -translate-y-1/2 md:text-4xl text-xl text-red-400"/>

@@ -66,14 +66,14 @@ export default function NewsComponent() {
 
   return (
     <div className="max-w-7xl mx-auto p-4 bg-slate-100 my-5 rounded-2xl">
-      <h1 className="text-3xl font-bold text-sky-900 text-center">Latest News</h1>
+      <h1 className="md:text-3xl text-xl font-bold text-sky-900 text-center">Latest News</h1>
       <Slider {...settings}>
         {news.map((item, index) => (
           <div key={index} className="p-4">
             <div className="rounded-lg overflow-hidden shadow-lg bg-white">
               <img src={item.img} alt={item.title} className="w-full h-32 object-cover" />
-              <div className="p-2">
-                <h2 className="text-2xl font-bold mb-1 line-clamp-1">{item.title}</h2>
+              <div className="p-3">
+                <h2 className="md:text-2xl text-xl font-bold mb-1 line-clamp-1">{item.title}</h2>
                 <p className="text-gray-600 mb-2">{item.date}</p>
                 <p className="text-gray-700 mb-2">{item.description}</p>
                 <a href={`/${item.link}`} className="text-blue-500 hover:underline mt-1 block">Read More</a>
