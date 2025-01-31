@@ -15,7 +15,6 @@ import Research from './pages/Research';
 import Club from './pages/Club';
 import Cricket from './components/pages Component/ClubComponent/Cricket';
 import Mission from './pages/about/Mission';
-import Founder from './pages/about/founder';
 import Leader from './pages/about/Leader';
 import Cse from './pages/Academics/Cse';
 import CseHome from './components/department/cseComponent/CseHome';
@@ -31,6 +30,7 @@ import Provice_chancellor from './pages/Admistration/Provice_chancellor';
 import Register from './pages/Admistration/Register';
 import ExamController from './pages/Admistration/ExamController';
 import Treasusrer from './pages/Admistration/Treasusrer';
+import Founders from './pages/about/founder';
 
 
 const appRouter = createBrowserRouter([
@@ -71,7 +71,7 @@ const appRouter = createBrowserRouter([
         ]
       },
       { path: '/mission', element:<Mission/>},
-      { path: '/founder', element:<Founder/>},
+      { path: '/founder', element:<Founders/>},
       { path: '/leader', element:<Leader/>},
       { path: '/cse', element:<Cse/>,
         children : [

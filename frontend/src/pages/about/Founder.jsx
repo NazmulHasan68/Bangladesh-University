@@ -5,7 +5,7 @@ import FounderLifeStyle from '../../components/pages Component/About.compoent/Fo
 import Navigation from '../../components/generallComponent/Navigation'
 import Footer from '../../components/generallComponent/Footer'
 
-export default function Founder() {
+export default function Founders() {
   return (
       <div>
           <Navigation/>
