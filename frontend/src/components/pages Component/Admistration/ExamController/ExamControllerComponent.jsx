@@ -38,7 +38,7 @@ export default function ExamControllerComponent() {
       
       
   return (
-    <div className="bg-gray-100 min-h-screen py-0 px-2 md:px-20">
+    <div className="bg-gray-100 min-h-screen py-0 px- md:px-20">
       <div className="max-w-6xl mx-auto bg-white shadow-lg rounded-lg p-8">
         {/* Header */}
         <h1 className="md:text-3xl text-xl font-bold text-center text-blue-700 mb-6">

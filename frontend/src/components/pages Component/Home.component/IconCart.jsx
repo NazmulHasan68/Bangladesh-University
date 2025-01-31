@@ -21,7 +21,7 @@ const CardContents = [
   { icon: <GiBus />, label: "Transport" , Link:'transport'},
   { icon: <PiStudent />, label: "Student" , Link:'student'},
   { icon: <MdMenuBook />, label: "Library" , Link:'library'},
-  { icon: <FaBuildingColumns />, label: "Admission", Link:'admission' },
+  { icon: <FaBuildingColumns />, label: "Blogs", Link:'blogs' },
   { icon: <GiSportMedal />, label: "Club", Link:'club' },
   { icon: <FaGraduationCap />, label: "Alumni" , Link:'alumni'},
   { icon: <RiContactsBook3Line />, label: "Contact", Link:'contact' },

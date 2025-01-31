@@ -28,7 +28,9 @@ export default function Alumni() {
         slidesToShow: 2,
         slidesToScroll: 1,
         autoplay: true,
+        arrows: false,
         autoplaySpeed: 2000,
+        
         responsive: [
             {
                 breakpoint: 1024,
