@@ -34,6 +34,8 @@ import Founders from './pages/about/Founders';
 import Certificate from './pages/Certificate';
 import Portal from './pages/Portal';
 import PortalmainContent from './components/pages Component/Portal.component/PortalmainContent';
+import PortalProfile from './components/pages Component/Portal.component/PortalProfile';
+import PortalCourse from './components/pages Component/Portal.component/PortalCourse';
 
 
 const appRouter = createBrowserRouter([
@@ -65,9 +67,9 @@ const appRouter = createBrowserRouter([
       { path: '/portal', element:<Portal/>,
         children:[
           {path : 'result', element:<PortalmainContent/>},
-          {path : 'profile', element:<PortalmainContent/>},
-          {path : 'courses', element:<PortalmainContent/>},
-          {path : 'settings', element:<PortalmainContent/>}
+          {path : 'profile', element:<PortalProfile/>},
+          {path : 'courses', element:<PortalCourse/>},
+          {path : 'finalcial', element:<PortalmainContent/>}
         ]
       },
       { path: '/blogs', element:<Blogs/>,

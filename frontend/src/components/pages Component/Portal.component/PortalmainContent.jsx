@@ -25,11 +25,11 @@ export default function PortalmainContent() {
     
   return (
     <div>
-     <div className="flex-1 p-6">
+     <div className="flex-1 p-2 md:p-6">
                 {/* Student Summary */}
                 <div className="bg-white shadow p-4 rounded mb-4">
-                    <h2 className="text-xl font-bold mb-2">Student Summary</h2>
-                    <div className="grid grid-cols-2 gap-4">
+                    <h2 className="md:text-xl text-md font-bold mb-2">Student Summary</h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-1 md:gap-4 text-xs md:text-md">
                         <p><strong>ID:</strong> {student.id}</p>
                         <p><strong>Name:</strong> {student.name}</p>
                         <p><strong>Department:</strong> {student.department}</p>
@@ -42,9 +42,9 @@ export default function PortalmainContent() {
                 </div>
 
                 {/* Registered Courses */}
-                <div className="bg-white shadow p-4 rounded mb-4">
-                    <h2 className="text-xl font-bold mb-2">Registered Courses</h2>
-                    <table className="w-full border border-gray-200">
+                <div className="bg-white shadow p-4 rounded mb-4 overflow-x-auto">
+                    <h2 className="md:text-xl text-sm font-bold mb-2">Registered Courses</h2>
+                    <table className="w-full border border-gray-200 text-xs md:text-sm">
                         <thead>
                             <tr className="bg-gray-100">
                                 <th className="border border-gray-300 p-2">Code</th>
@@ -58,9 +58,9 @@ export default function PortalmainContent() {
                             {courses.map((course) => (
                                 <tr key={course.code} className="text-center">
                                     <td className="border border-gray-300 p-2">{course.code}</td>
-                                    <td className="border border-gray-300 p-2">{course.title}</td>
+                                    <td className="border border-gray-300 p-2 text-left">{course.title}</td>
                                     <td className="border border-gray-300 p-2">{course.credit}</td>
-                                    <td className="border border-gray-300 p-2">{course.faculty}</td>
+                                    <td className="border border-gray-300 p-2 text-left">{course.faculty}</td>
                                     <td className="border border-gray-300 p-2 font-bold">{course.grade}</td>
                                 </tr>
                             ))}

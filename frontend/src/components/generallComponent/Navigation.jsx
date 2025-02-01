@@ -284,7 +284,7 @@ export default function Navigation() {
           </NavigationMenu>
         </div>
         <div className="flex gap-4">
-          <div className="px-4 py-1 rounded-xl bg-red-500 text-white md:hidden ">Portal</div>
+          <Link to={'/portal'} className="px-4 py-1 rounded-xl bg-red-500 text-white md:hidden ">Portal</Link>
           <Sheet>
             <SheetTrigger className='md:hidden block '>
               <FaBars className="text-2xl"/>
