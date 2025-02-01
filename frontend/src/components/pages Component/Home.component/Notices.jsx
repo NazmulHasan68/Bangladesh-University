@@ -28,6 +28,7 @@ import {
 import blogImage1 from '../../../assets/commonPhoto/home1.jpg'
 import blogImage2 from '../../../assets/commonPhoto/home2.jpg'
 import blogImage3 from '../../../assets/commonPhoto/home3.jpg'
+import { Link } from "react-router-dom"
 
 export function Notices() {
 
@@ -118,10 +119,10 @@ export function Notices() {
             <TableBody>
               {
                 Blog.map((item, index)=>(
-                  <TableRow key={index} className='border-t border-gray-200 cursor-pointer'>
+                  <TableRow key={index}  className='border-t border-gray-200 cursor-pointer'>
                     <TableCell className="font-semibold text-sky-950"><img src={item.imgSrc} className="w-24 object-cover"/></TableCell>
                     <TableCell className=' text-sky-950'>
-                      <h1 className=" line-clamp-2 font-semibold">{item.Title}</h1>
+                      <Link to={'single/blog'} className=" line-clamp-2 font-semibold">{item.Title}</Link>
                       <h2 className="text-sm ">{item.name}</h2>
                       <h2 className="text-xs">{item.Dept}</h2>
                     </TableCell>

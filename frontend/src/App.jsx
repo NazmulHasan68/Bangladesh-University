@@ -13,7 +13,7 @@ import Blogsection from './components/pages Component/BlogsComponent/Blogsection
 import NewsAndEvent from './pages/NewsAndEvent';
 import Research from './pages/Research';
 import Club from './pages/Club';
-import Cricket from './components/pages Component/ClubComponent/Cricket';
+import Cricket from './components/pages Component/ClubComponent/Cricket/CricketMembers';
 import Mission from './pages/about/Mission';
 import Leader from './pages/about/Leader';
 import Cse from './pages/Academics/Cse';
@@ -36,6 +36,14 @@ import Portal from './pages/Portal';
 import PortalmainContent from './components/pages Component/Portal.component/PortalmainContent';
 import PortalProfile from './components/pages Component/Portal.component/PortalProfile';
 import PortalCourse from './components/pages Component/Portal.component/PortalCourse';
+import CricketMembers from './components/pages Component/ClubComponent/Cricket/CricketMembers';
+import CricketManager from './components/pages Component/ClubComponent/Cricket/CricketManager';
+import CricketTeam from './components/pages Component/ClubComponent/Cricket/CricketTeam';
+import CricketSelector from './components/pages Component/ClubComponent/Cricket/CricketSelector';
+import CricketSponsor from './components/pages Component/ClubComponent/Cricket/CricketSponsor';
+import CricketGallery from './components/pages Component/ClubComponent/Cricket/CricketGalary';
+import CricketFutureProgram from './components/pages Component/ClubComponent/Cricket/CricketfutureProgram';
+import BlogPage from './components/pages Component/BlogsComponent/BlogPage';
 
 
 const appRouter = createBrowserRouter([
@@ -74,14 +82,23 @@ const appRouter = createBrowserRouter([
       },
       { path: '/blogs', element:<Blogs/>,
         children :[
-          {path: 'dept', element:<Blogsection/>}
+          {path: 'dept', element:<Blogsection/>},
+          
         ]
       },
+      {path: 'single/blog', element:<BlogPage/>},
       { path: '/newsandevent', element:<NewsAndEvent/>},
       { path: '/research', element:<Research/>},
       { path: '/club', element:<Club/>,
         children : [
-          {path : 'cricket', element: <Cricket/> }
+          {path : 'cricket/cricketmembers', element: <CricketMembers/> },
+          {path : 'cricket/cricketmanager', element: <CricketManager/> },
+          {path : 'cricket/cricketteam', element: <CricketTeam/> },
+          {path : 'cricket/cricketselector', element: <CricketSelector/> },
+          {path : 'cricket/cricketsponsor', element: <CricketSponsor/> },
+          {path : 'cricket/cricketgallery', element: <CricketGallery/> },
+          {path : 'cricket/cricketfuture-program', element: <CricketSponsor/> },
+          {path : 'cricket/cricketachievement', element: <CricketFutureProgram/> },
         ]
       },
       { path: '/mission', element:<Mission/>},

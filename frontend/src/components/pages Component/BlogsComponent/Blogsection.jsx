@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import ReactPaginate from 'react-paginate';
+import { Link } from 'react-router-dom';
 
 // Example data for the blogs with 8 items and using Lorem Picsum for images
 const blogData = [
@@ -104,7 +105,7 @@ export default function BlogSection() {
               className='w-full h-full object-cover rounded-md'
             />
           </div>
-          <div className='md:basis-3/4 basis-4/5 md:p-4 p-1 rounded-lg'>
+          <Link to={'/single/blog'} className='md:basis-3/4 basis-4/5 md:p-4 p-1 rounded-lg'>
             <h1 className='text-sm md:text-xl font-bold text-sky-800'>{blog.title}</h1>
             <p className='line-clamp-2 text-xs md:text-sm text-sky-800'>{blog.description}</p>
             <div className='flex justify-between items-end mt-4'>
@@ -114,7 +115,7 @@ export default function BlogSection() {
                 <p>{blog.department}</p>
               </div>
             </div>
-          </div>
+          </Link>
         </div>
       ))}
 

@@ -13,16 +13,16 @@ import { Link } from 'react-router-dom'; // Ensure this import if you're using R
 
 export default function StudentClub() {
   const club = [
-    { name: "Programming Club", link: "/programming-club", img: "https://swiperjs.com/demos/images/nature-1.jpg", icon: <FaCode /> },
-    { name: "Library", link: "/library", img: "https://swiperjs.com/demos/images/nature-2.jpg", icon: <IoLibraryOutline /> },
-    { name: "Sports Club", link: "/sports-club", img: "https://swiperjs.com/demos/images/nature-3.jpg", icon: <MdOutlineSportsCricket /> },
-    { name: "Cultural Club", link: "/cultural-club", img: "https://swiperjs.com/demos/images/nature-4.jpg", icon: <FaMedal /> },
-    { name: "Debating Club", link: "/debating-club", img: "https://swiperjs.com/demos/images/nature-5.jpg", icon: <GiMicrophone /> },
-    { name: "Language Club", link: "/language-club", img: "https://swiperjs.com/demos/images/nature-6.jpg", icon: <RiKakaoTalkLine /> },
-    { name: "Bus Schedule", link: "/bus-schedule", img: "https://swiperjs.com/demos/images/nature-7.jpg", icon: <LuBus /> },
-    { name: "Donation", link: "/donation", img: "https://swiperjs.com/demos/images/nature-8.jpg", icon: <BiSolidDonateHeart /> },
+    { name: "Programming Club", link: "/club", img: "https://swiperjs.com/demos/images/nature-1.jpg", icon: <FaCode /> },
+    { name: "Library", link: "/club", img: "https://swiperjs.com/demos/images/nature-2.jpg", icon: <IoLibraryOutline /> },
+    { name: "Sports Club", link: "/club", img: "https://swiperjs.com/demos/images/nature-3.jpg", icon: <MdOutlineSportsCricket /> },
+    { name: "Cultural Club", link: "/club", img: "https://swiperjs.com/demos/images/nature-4.jpg", icon: <FaMedal /> },
+    { name: "Debating Club", link: "/club", img: "https://swiperjs.com/demos/images/nature-5.jpg", icon: <GiMicrophone /> },
+    { name: "Language Club", link: "/club", img: "https://swiperjs.com/demos/images/nature-6.jpg", icon: <RiKakaoTalkLine /> },
+    { name: "Bus Schedule", link: "/transport", img: "https://swiperjs.com/demos/images/nature-7.jpg", icon: <LuBus /> },
+    { name: "Donation", link: "/club", img: "https://swiperjs.com/demos/images/nature-8.jpg", icon: <BiSolidDonateHeart /> },
     { name: "Blogs", link: "/blogs", img: "https://swiperjs.com/demos/images/nature-8.jpg", icon: <SiBloglovin /> },
-    { name: "Event", link: "/event", img: "https://swiperjs.com/demos/images/nature-8.jpg", icon: <MdOutlineEventNote /> },
+    { name: "Event", link: "/newsandevent", img: "https://swiperjs.com/demos/images/nature-8.jpg", icon: <MdOutlineEventNote /> },
   ];
 
   return (
