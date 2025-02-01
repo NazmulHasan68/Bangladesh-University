@@ -25,7 +25,7 @@ export default function ClubSidebar() {
             </h1>
             <div className='flex flex-col gap-1 text-sky-700 mt-2'>
                 {postname.map((item, index) => (
-                    <Link to={`http://localhost:5173/club${item.link}`} key={index}>
+                    <Link to={`/club${item.link}`} key={index}>
                         {item.name}
                     </Link>
                 ))}
