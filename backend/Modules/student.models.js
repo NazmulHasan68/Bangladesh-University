@@ -15,18 +15,14 @@ const subjectSchema = new mongoose.Schema({
   subjectcode: { type: String, required: true, default : 'CSE-1102' },
   subjectcredit: { type: Number, required: true, default: 3 },
   subjectgrade: { type: Number, required: true, default: 3.00},
+  faculty: { type: String, required: true, default : "abcd" },
 });
 
-// Define Faculty Schema
-const facultySchema = new mongoose.Schema({
-  name: { type: String, required: true, default : "abcd" },
-});
 
 // Define Semester Schema
 const semesterSchema = new mongoose.Schema({
   semesterName: { type: String, required: true, default:"spring 2025" },
   subjects: { type: [subjectSchema], default: [] },
-  faculty: { type: [facultySchema], default: [] },
 });
 
 // Define Payment Schema
