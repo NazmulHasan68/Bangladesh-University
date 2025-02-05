@@ -99,7 +99,7 @@ const teacherSchema = new Schema({
     evenmagement: { type: Boolean, required: true, default: false },
     evenmagementrole: { type: String, required: true, default: "member" },
   },
-});
+},{ timestamps: true });
 
 const Teacher = mongoose.model("Teacher", studentSchema);
 export default Teacher;

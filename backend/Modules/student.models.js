@@ -141,7 +141,8 @@ const studentSchema = new mongoose.Schema({
   reAdmission : { type : String, required : true, default:"N/A"},
   librarystatus : { type : String, required : true, default:"cleared"},
   CertificateApplicationStatus : { type : String, required : true, default:"N/A"},
-});
+  
+},{ timestamps: true });
 
 // Export Student Model
 const Student = mongoose.model("Student", studentSchema);
