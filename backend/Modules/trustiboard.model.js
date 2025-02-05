@@ -46,7 +46,7 @@ const TrustiboardSchema = new mongoose.Schema(
     charmen : {type :String, required:true, default:false}
 
   },
-  { timestamps: true } // Automatically adds createdAt & updatedAt fields
+  { timestamps: true } 
 );
 
 export default mongoose.model("Trustiboard", TrustiboardSchema);
