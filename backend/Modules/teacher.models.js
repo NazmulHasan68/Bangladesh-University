@@ -61,6 +61,7 @@ const teacherSchema = new Schema({
   },
 
   subjects: { type: [subjectSchema], default: [] },
+  permission : { type: Boolean, required: true, default: true },
 
   // Club Membership with Roles
   club: {

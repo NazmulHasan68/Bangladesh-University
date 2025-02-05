@@ -32,6 +32,8 @@ const StaffSchema = new mongoose.Schema({
     presentAddress: { type: addressSchema, required: true },
     permanentAddress: { type: addressSchema, required: true },
 
+    permission : { type: Boolean, required: true, default: true },
+
     // School & College Information
     education: {
         school: {
