@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-
+import axios from 'axios';
 
 
 export default function ApplyInput() {
-
 
   const bangladeshLocations = [
     {
@@ -150,7 +149,7 @@ export default function ApplyInput() {
       ],
     },
   ];
-  
+
   const [formData, setFormData] = useState({
     name: '',
     fatherName: '',
@@ -168,8 +167,8 @@ export default function ApplyInput() {
     ownNumber: '',
     guardianNumber: '',
     email: '',
-    admissionroll:'',
-    file: null, // Ensure this starts as null to hold the file object
+    admissionroll: '',
+    file: null,
   });
 
   const handleChange = (e) => {
@@ -185,16 +184,30 @@ export default function ApplyInput() {
     if (selectedFile) {
       setFormData((prevState) => ({
         ...prevState,
-        file: selectedFile, // Update the `file` property in the state
+        file: selectedFile,
       }));
     }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Form Data:', formData); // Form data with the file
-    // Handle form submission logic here
+    console.log('Form Data:', formData);
+
+    // Use axios to submit the form data
+    fetch("http://localhost:5000/api/v1/student/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(formData)
+    })
+    .then(res => res.json())
+    .then(data => console.log(data))
+    .catch(err => console.error(err));
+    
+    
   };
+
 
   return (
     <div className="max-w-6xl mx-auto p-8 bg-white rounded-lg shadow-md">
