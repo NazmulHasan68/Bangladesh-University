@@ -44,6 +44,19 @@ import CricketSponsor from './components/pages Component/ClubComponent/Cricket/C
 import CricketGallery from './components/pages Component/ClubComponent/Cricket/CricketGalary';
 import CricketFutureProgram from './components/pages Component/ClubComponent/Cricket/CricketfutureProgram';
 import BlogPage from './components/pages Component/BlogsComponent/BlogPage';
+import Dashboard from './pages/dashboard/Dashboard';
+import Teacher from './pages/dashboard/Teacher';
+import Coordinarors from './pages/dashboard/Coordinarors';
+import DepartmentHead from './pages/dashboard/DepartmentHead';
+import ExamControllerComponent from './components/pages Component/Admistration/ExamController/ExamControllerComponent';
+import CenteralController from './pages/dashboard/CenteralController';
+import StudentDash from './components/DashBoard/coordinartos.component/StudentDash';
+import TeacherDash from './components/DashBoard/coordinartos.component/TeacherDash';
+import RoutineDash from './components/DashBoard/coordinartos.component/RoutineDash';
+import SubjectDash from './components/DashBoard/coordinartos.component/SubjectDash';
+import NodeprtTeacherDash from './components/DashBoard/coordinartos.component/NodeprtTeacherDash';
+import MarkSheetDash from './components/DashBoard/coordinartos.component/MarkSheetDash';
+import CareerDash from './components/DashBoard/coordinartos.component/CareerDash';
 
 
 const appRouter = createBrowserRouter([
@@ -72,6 +85,35 @@ const appRouter = createBrowserRouter([
       { path: '/career', element:<Career/>},
       { path: '/contact', element:<Contact/>},
       { path: '/certificate', element:<Certificate/>},
+      { path: '/dashboard', element:<Dashboard/>, 
+        children : [
+          {path : 'teacher', element:<Teacher/>},
+          {path : 'coordinator', element:<Coordinarors/>,
+            children : [
+              {path : 'student' , element : <StudentDash/>},
+              {path : 'teacher' , element : <TeacherDash/>},
+              {path : 'routine' , element : <RoutineDash/>},
+              {path : 'subject' , element : <SubjectDash/>},
+              {path : 'non-dept-teacher' , element : <NodeprtTeacherDash/>},
+              {path : 'mark-sheet' , element : <MarkSheetDash/>},
+              {path : 'career' , element : <CareerDash/>},
+            ]
+          },
+          {path : 'Departmenthead', element:<DepartmentHead/>,
+            children : [
+              {path : 'student' , element : <StudentDash/>},
+              {path : 'teacher' , element : <TeacherDash/>},
+              {path : 'routine' , element : <RoutineDash/>},
+              {path : 'subject' , element : <SubjectDash/>},
+              {path : 'non-dept-teacher' , element : <NodeprtTeacherDash/>},
+              {path : 'mark-sheet' , element : <MarkSheetDash/>},
+              {path : 'career' , element : <CareerDash/>},
+            ]
+          },
+          {path : 'examcontroller', element:<ExamControllerComponent/>},
+          {path : 'centralcontroller', element:<CenteralController/>},
+        ]
+      },
       { path: '/portal', element:<Portal/>,
         children:[
           {path : 'result', element:<PortalmainContent/>},
