@@ -10,6 +10,7 @@ import user4 from '../../assets/user/user4.jpg';
 import user5 from '../../assets/user/user5.jpg';
 import user6 from '../../assets/user/user6.jpg';
 import user7 from '../../assets/user/user7.jpg';
+import { Link } from 'react-router-dom';
 
 export default function Alumni() {
     const users = [
@@ -75,6 +76,8 @@ export default function Alumni() {
                     ))}
                 </Slider>
             </div>
+            
+            <Link to={'/dashboard/coordinator'}>dashboard/coordinator</Link>
         </div>
     );
 }
