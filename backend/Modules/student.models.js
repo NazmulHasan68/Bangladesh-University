@@ -76,11 +76,12 @@ const studentSchema = new mongoose.Schema({
   ],
   college: [
     {
-      collegename: { type: String, required: true, default: "xyz College" },
+      collegename: { type: String, required: true, default: "world College" },
       hscresult: { type: Number, required: true, default: 2.00 },
-      currentdepartment: { type: String, required: true, default: "cse" },
+      previousdepartment: { type: String, required: true, default: "science" },
     },
   ],
+  desiredDepartment : { type : String, required:true, default:''},
 
   // Guardian Information
   guardian: [
@@ -90,6 +91,7 @@ const studentSchema = new mongoose.Schema({
       guardianlocation: { type: String, required: true, default: "dhaka" },
     },
   ],
+
 
   // Club Membership with Roles
   club: [
