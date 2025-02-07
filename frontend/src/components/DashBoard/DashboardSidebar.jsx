@@ -15,17 +15,6 @@ export default function DashboardSidebar() {
       { name: "Career", icon: <Briefcase />, link: "/dashboard/coordinator/career" }, 
     ];
     
-
-    const teachers = [
-      { name: "Profile", icon: <User />, link: "/dashboard/teacher/profile" },
-      { name: "Subject", icon: <Book />, link: "/dashboard/teacher/subject" },
-      { name: "Payment", icon: <CreditCard />, link: "/dashboard/teacher/payment" },
-      { name: "Add Result", icon: <FilePlus />, link: "/dashboard/teacher/add-result" },
-      { name: "Blog Writing", icon: <PenSquare />, link: "/dashboard/teacher/blog-writing" },
-      { name: "Add News", icon: <Newspaper />, link: "/dashboard/teacher/add-news" },
-      { name: "Club", icon: <Users />, link: "/dashboard/club" },
-    ];
- 
     
   return (
     <div className='w-full flex flex-col gap-1 bg-slate-300 h-full'>

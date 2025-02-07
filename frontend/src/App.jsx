@@ -56,6 +56,28 @@ import SubjectDash from './components/DashBoard/coordinartos.component/SubjectDa
 import NodeprtTeacherDash from './components/DashBoard/coordinartos.component/NodeprtTeacherDash';
 import MarkSheetDash from './components/DashBoard/coordinartos.component/MarkSheetDash';
 import CareerDash from './components/DashBoard/coordinartos.component/CareerDash';
+import TeacherProfile from './components/DashBoard/teacher.component/TeacherProfile';
+import TeacherSubject from './components/DashBoard/teacher.component/TeacherSubject';
+import TeacherPayment from './components/DashBoard/teacher.component/TeacherPayment';
+import TeacherAddResult from './components/DashBoard/teacher.component/TeacherAddResult';
+import TeacherBlogWritting from './components/DashBoard/teacher.component/TeacherBlogWritting';
+import TeacherAddNews from './components/DashBoard/teacher.component/TeacherAddNews';
+import TeacherClub from './components/DashBoard/teacher.component/TeacherClub';
+import CentrallLibrary from './components/DashBoard/centrallcontroller.component/CentrallLibrary';
+import CentrallClub from './components/DashBoard/centrallcontroller.component/CentrallClub';
+import CentrallGuard from './components/DashBoard/centrallcontroller.component/CentrallGuard';
+import CentrallOfficeAssistance from './components/DashBoard/centrallcontroller.component/CentrallOfficeAssistance';
+import Centrallgradenar from './components/DashBoard/centrallcontroller.component/Centrallgradenar';
+import CentrallHelper from './components/DashBoard/centrallcontroller.component/CentrallHelper';
+import CentrallTransport from './pages/dashboard/CentrallTransport';
+import CentrallCanteen from './components/DashBoard/centrallcontroller.component/CentrallCanteen';
+import CentrallExamController from './pages/dashboard/ExamController';
+import ExamNoticeboard from './components/DashBoard/examcontroller.component/ExamNoticeboard';
+import ExamDate from './components/DashBoard/examcontroller.component/ExamDate';
+import ExamRoutine from './components/DashBoard/examcontroller.component/ExamRoutine';
+import ExamDepartment from './components/DashBoard/examcontroller.component/ExamDepartment';
+import ExamFutureScheedul from './components/DashBoard/examcontroller.component/ExamFutureScheedul';
+import ExamBoard from './components/DashBoard/examcontroller.component/ExamBoard';
 
 
 const appRouter = createBrowserRouter([
@@ -84,9 +106,20 @@ const appRouter = createBrowserRouter([
       { path: '/career', element:<Career/>},
       { path: '/contact', element:<Contact/>},
       { path: '/certificate', element:<Certificate/>},
+
       { path: '/dashboard', element:<Dashboard/>, 
         children : [
-          {path : 'teacher', element:<Teacher/>},
+          {path : 'teacher', element:<Teacher/>,
+            children : [
+              {path: 'profile', element:<TeacherProfile/>},
+              {path: 'subject', element:<TeacherSubject/>},
+              {path: 'payment', element:<TeacherPayment/>},
+              {path: 'add-result', element:<TeacherAddResult/>},
+              {path: 'blog-writing', element:<TeacherBlogWritting/>},
+              {path: 'add-news', element:<TeacherAddNews/>},
+              {path: 'Club', element:<TeacherClub/>},
+            ]
+          },
           {path : 'coordinator', element:<Coordinarors/>,
             children : [
               {path : 'student' , element : <StudentDash/>},
@@ -109,8 +142,28 @@ const appRouter = createBrowserRouter([
               {path : 'career' , element : <CareerDash/>},
             ]
           },
-          {path : 'examcontroller', element:<ExamControllerComponent/>},
-          {path : 'centralcontroller', element:<CenteralController/>},
+          {path : 'centralexamcontroller', element:<CentrallExamController/>,
+            children : [
+              {path : 'notice-board' , element:<ExamNoticeboard/>},
+              {path : 'exam-date' , element:<ExamDate/>},
+              {path : 'exam-routine' , element:<ExamRoutine/>},
+              {path : 'department' , element:<ExamDepartment/>},
+              {path : 'future-schedule' , element:<ExamFutureScheedul/>},
+              {path : 'exam-board' , element:<ExamBoard/>},
+            ]
+          },
+          {path : 'centralcontroller', element:<CenteralController/>,
+            children : [
+              {path : 'library' , element:<CentrallLibrary/>},
+              {path : 'Club' , element:<CentrallClub/>},
+              {path : 'Security-Guard' , element:<CentrallGuard/>},
+              {path : 'canteen' , element:<CentrallCanteen/>},
+              {path : 'office-assistance' , element:<CentrallOfficeAssistance/>},
+              {path : 'gardener' , element:<Centrallgradenar/>},
+              {path : 'Helper' , element:<CentrallHelper/>},
+              {path : 'transport' , element:<CentrallTransport/>},
+            ]
+          },
         ]
       },
       { path: '/portal', element:<Portal/>,
