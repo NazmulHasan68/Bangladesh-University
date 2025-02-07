@@ -13,7 +13,6 @@ import Blogsection from './components/pages Component/BlogsComponent/Blogsection
 import NewsAndEvent from './pages/NewsAndEvent';
 import Research from './pages/Research';
 import Club from './pages/Club';
-import Cricket from './components/pages Component/ClubComponent/Cricket/CricketMembers';
 import Mission from './pages/about/Mission';
 import Leader from './pages/about/Leader';
 import Cse from './pages/Academics/Cse';

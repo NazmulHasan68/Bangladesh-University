@@ -32,7 +32,7 @@ import {
 const Administration = [
   {
     title: "The vice-chancellor",
-    href: "/vice",
+    href: "vice",
     description:
       "About our vice-chancellor",
   },
