@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { useStudentRegisterMutation } from '../../redux/BustudentApi';
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { studentSchema } from "../../utils/validationSchema"
 
 
 export default function ApplyInput() {
@@ -158,29 +161,45 @@ export default function ApplyInput() {
     upozilla: '',
     district: '',
     division: '',
-    sscResult: '',
-    hscResult: '',
+    sscResult: null,
+    hscResult: null,
     department: '',
     desiredDepartment: '',
     presentGuardian: '',
     religion: '',
-    ownNumber: '',
-    guardianNumber: '',
+    ownNumber: null,
+    guardianNumber: null,
     email: '',
     admissionroll: '',
     file: null,
   });
-
+  
+  const { register, handleSubmit, setValue, formState: { errors }} = useForm({ resolver: zodResolver(studentSchema)});
+  const [studentRegister, { isLoading, error, data }] = useStudentRegisterMutation();
+  
+  
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
+  
+    // For numeric fields like sscResult and hscResult, ensure the value is a number
+    if (name === 'sscResult' || name === 'hscResult') {
+      // Convert the string to a number if the value is not empty
+      setFormData((prevState) => ({
+        ...prevState,
+        [name]: value ? parseFloat(value) : null, // Ensure it is a number or null if empty
+      }));
+    } else {
+      setFormData((prevState) => ({
+        ...prevState,
+        [name]: value,
+      }));
+    }
   };
-
+  
+  
   const handleFileChange = (event) => {
     const selectedFile = event.target.files[0];
+    
     if (selectedFile) {
       setFormData((prevState) => ({
         ...prevState,
@@ -188,32 +207,38 @@ export default function ApplyInput() {
       }));
     }
   };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Form Data:', formData);
-
-    // Use axios to submit the form data
-    fetch("http://localhost:5000/api/v1/student/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(formData)
-    })
-    .then(res => res.json())
-    .then(data => console.log(data))
-    .catch(err => console.error(err));
-    
-    
+  
+  
+  const handleSubmitForm = async (data) => {
+    console.log('Form Data:', data);
+  
+    const formDataToSend = new FormData();
+    Object.keys(data).forEach((key) => {
+      formDataToSend.append(key, data[key]);
+    });
+  
+    // If you have a file, append it as well
+    if (formData.file) {
+      formDataToSend.append("file", formData.file);
+    } else {
+      console.error("File is not selected.");
+      return;
+    }
+  
+    try {
+      await studentRegister(formDataToSend);
+      console.log("Form submitted successfully!");
+    } catch (error) {
+      console.error("Submission Error:", error);
+    }
   };
-
-
+  
+  
   return (
     <div className="max-w-6xl mx-auto p-8 bg-white rounded-lg shadow-md">
       <h2 className="text-2xl font-semibold text-center mb-6">Bangladesh University Admission Form</h2>
 
-      <form onSubmit={handleSubmit} className='flex flex-col gap-2'>
+      <form onSubmit={handleSubmit(handleSubmitForm)} className='flex flex-col gap-2'>
 
         {/* Personal Information Section */}
 
@@ -226,11 +251,14 @@ export default function ApplyInput() {
               id="name"
               name="name"
               type="text"
-              placeholder="Enter your full name"
+              {...register("name")}
               value={formData.name}
+              placeholder="Enter your full name"
               onChange={handleChange}
               className="mt-1 p-2 w-full border border-gray-300 rounded-lg"
             />
+            {errors.name && <p className="text-red-500 text-xs py-2">{errors.name.message}</p>}
+            
           </div>
 
           <div className="mb-4">
@@ -238,12 +266,14 @@ export default function ApplyInput() {
             <input
               id="fatherName"
               name="fatherName"
+              {...register("fatherName")}
               type="text"
               placeholder="Enter your father's name"
               value={formData.fatherName}
               onChange={handleChange}
               className="mt-1 p-2 w-full border border-gray-300 rounded-lg"
             />
+            {errors.fatherName && <p className="text-red-500 text-xs py-2">{errors.fatherName.message}</p>}
           </div>
 
           <div className="mb-4">
@@ -251,12 +281,14 @@ export default function ApplyInput() {
             <input
               id="motherName"
               name="motherName"
+              {...register("motherName")}
               type="text"
               placeholder="Enter your mother's name"
               value={formData.motherName}
               onChange={handleChange}
               className="mt-1 p-2 w-full border border-gray-300 rounded-lg"
             />
+            {errors.motherName && <p className="text-red-500 text-xs py-2">{errors.motherName.message}</p>}
           </div>
 
         </div>
@@ -269,12 +301,14 @@ export default function ApplyInput() {
           <input
             id="village"
             name="village"
+            {...register("village")}
             type="text"
             placeholder="Enter your village"
             value={formData.village}
             onChange={handleChange}
             className="mt-1 p-2 w-full border border-gray-300 rounded-lg"
           />
+          {errors.village && <p className="text-red-500 text-xs py-2">{errors.village.message}</p>}
         </div>
 
       <div className="mb-4">
@@ -282,6 +316,7 @@ export default function ApplyInput() {
         <select
           id="division"
           name="division"
+          {...register("division")}
           value={formData.division}
           onChange={handleChange}
           className="mt-1 p-2 w-full border border-gray-300 rounded-lg"
@@ -293,6 +328,7 @@ export default function ApplyInput() {
             </option>
           ))}
         </select>
+        {errors.village && <p className="text-red-500 text-xs py-2">{errors.village.message}</p>}
       </div>
 
       <div className="mb-4">
@@ -300,6 +336,7 @@ export default function ApplyInput() {
         <select
           id="district"
           name="district"
+          {...register("district")}
           value={formData.district}
           onChange={handleChange}
           className="mt-1 p-2 w-full border border-gray-300 rounded-lg"
@@ -313,6 +350,7 @@ export default function ApplyInput() {
               </option>
             ))}
         </select>
+        {errors.district && <p className="text-red-500 text-xs py-2">{errors.district.message}</p>}
       </div>
 
       <div className="mb-4">
@@ -320,6 +358,7 @@ export default function ApplyInput() {
         <select
           id="upozilla"
           name="upozilla"
+          {...register("upozilla")}
           value={formData.upozilla}
           onChange={handleChange}
           className="mt-1 p-2 w-full border border-gray-300 rounded-lg"
@@ -334,6 +373,7 @@ export default function ApplyInput() {
                 </option>
               ))}
           </select>
+          {errors.upozilla && <p className="text-red-500 text-xs py-2">{errors.upozilla.message}</p>}
         </div>
       </div>
 
@@ -341,17 +381,18 @@ export default function ApplyInput() {
 
         <div className='grid md:grid-cols-3 sm:grid-cols-2 grid-cols-2 gap-2'>
           {/* Academic Information */}
+
           <div className="mb-4">
             <label htmlFor="sscResult" className="block text-lg font-medium text-gray-700">SSC Result</label>
             <input
               id="sscResult"
               name="sscResult"
+              {...register("sscResult", { valueAsNumber: true })}  // Ensure that the value is treated as a number
               type="number"
               placeholder="Enter your SSC result"
-              value={formData.sscResult}
-              onChange={handleChange}
               className="mt-1 p-2 w-full border border-gray-300 rounded-lg"
             />
+            {errors.sscResult && <p className="text-red-500 text-xs py-2">{errors.sscResult.message}</p>}
           </div>
 
           <div className="mb-4">
@@ -359,19 +400,21 @@ export default function ApplyInput() {
             <input
               id="hscResult"
               name="hscResult"
+              {...register("hscResult", { valueAsNumber: true })}  // Ensure that the value is treated as a number
               type="number"
               placeholder="Enter your HSC result"
-              value={formData.hscResult}
-              onChange={handleChange}
               className="mt-1 p-2 w-full border border-gray-300 rounded-lg"
             />
+            {errors.hscResult && <p className="text-red-500 text-xs py-2">{errors.hscResult.message}</p>}
           </div>
+
 
           <div className="mb-4">
             <label htmlFor="department" className="block text-lg font-medium text-gray-700">Previous Department </label>
             <select
               id="department"
               name="department"
+              {...register("department")}
               value={formData.department}
               onChange={handleChange}
               className="mt-1 p-2 w-full border border-gray-300 rounded-lg"
@@ -380,6 +423,7 @@ export default function ApplyInput() {
               <option value="arts">Arts</option>
               <option value="commerce">Commerce</option>
             </select>
+            {errors.department && <p className="text-red-500 text-xs py-2">{errors.department.message}</p>}
           </div>
 
           <div className="mb-4">
@@ -387,6 +431,7 @@ export default function ApplyInput() {
             <select
               id="desiredDepartment"
               name="desiredDepartment"
+              {...register("desiredDepartment")}
               value={formData.desiredDepartment}
               onChange={handleChange}
               className="mt-1 p-2 w-full border border-gray-300 rounded-lg"
@@ -404,6 +449,7 @@ export default function ApplyInput() {
               <option value="civilEngineering">Sosology </option>
               <option value="civilEngineering">Arghtecture </option>
             </select>
+            {errors.desiredDepartment && <p className="text-red-500 text-xs py-2">{errors.desiredDepartment.message}</p>}
           </div>
 
           <div className="mb-4">
@@ -411,6 +457,7 @@ export default function ApplyInput() {
             <select
               id="admissionroll"
               name="admissionroll"
+              {...register("admissionroll")}
               value={formData.admissionroll}
               onChange={handleChange}
               className="mt-1 p-2 w-full border border-gray-300 rounded-lg"
@@ -420,6 +467,7 @@ export default function ApplyInput() {
               <option value="commerce">Diploma in Under Graduation</option>
               <option value="commerce">Diploma in Post Graduation</option>
             </select>
+            {errors.admissionroll && <p className="text-red-500 text-xs py-2">{errors.admissionroll.message}</p>}
           </div>
 
           <div>
@@ -429,11 +477,17 @@ export default function ApplyInput() {
             <input
               type="file"
               id="file-upload"
-              name='file'
+              accept="image/*"
+              {...register("file")}
+              name="file"
+              // handleFileChange can still be used if you need extra logic
               onChange={handleFileChange}
               className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
             />
+            {errors.file && <p className="text-red-500 text-xs py-2">{errors.file.message}</p>}
           </div>
+
+
         </div>
 
         <div className='grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-2'>
@@ -444,12 +498,14 @@ export default function ApplyInput() {
             <input
               id="presentGuardian"
               name="presentGuardian"
+              {...register("presentGuardian")}
               type="text"
               placeholder="Enter present guardian's name"
               value={formData.presentGuardian}
               onChange={handleChange}
               className="mt-1 p-2 w-full border border-gray-300 rounded-lg"
             />
+            {errors.presentGuardian && <p className="text-red-500 text-xs py-2">{errors.presentGuardian.message}</p>}
           </div>
 
           <div className="mb-4">
@@ -457,12 +513,14 @@ export default function ApplyInput() {
             <input
               id="religion"
               name="religion"
+              {...register("religion")}
               type="text"
               placeholder="Enter your religion"
               value={formData.religion}
               onChange={handleChange}
               className="mt-1 p-2 w-full border border-gray-300 rounded-lg"
             />
+            {errors.religion && <p className="text-red-500 text-xs py-2">{errors.religion.message}</p>}
           </div>
 
           <div className="mb-4">
@@ -470,12 +528,14 @@ export default function ApplyInput() {
             <input
               id="ownNumber"
               name="ownNumber"
+              {...register("ownNumber")}
               type="tel"
               placeholder="Enter your phone number"
               value={formData.ownNumber}
               onChange={handleChange}
               className="mt-1 p-2 w-full border border-gray-300 rounded-lg"
             />
+            {errors.ownNumber && <p className="text-red-500 text-xs py-2">{errors.ownNumber.message}</p>}
           </div>
 
           <div className="mb-4">
@@ -483,12 +543,14 @@ export default function ApplyInput() {
             <input
               id="guardianNumber"
               name="guardianNumber"
+              {...register("guardianNumber")}
               type="tel"
               placeholder="Enter guardian's phone number"
               value={formData.guardianNumber}
               onChange={handleChange}
               className="mt-1 p-2 w-full border border-gray-300 rounded-lg"
             />
+            {errors.guardianNumber && <p className="text-red-500 text-xs py-2">{errors.guardianNumber.message}</p>}
           </div>
 
           <div className="mb-4">
@@ -496,19 +558,26 @@ export default function ApplyInput() {
             <input
               id="email"
               name="email"
+              {...register("email")}
               type="email"
               placeholder="Enter your email address"
               value={formData.email}
               onChange={handleChange}
               className="mt-1 p-2 w-full border border-gray-300 rounded-lg"
             />
+            {errors.email && <p className="text-red-500 text-xs py-2">{errors.email.message}</p>}
           </div>
         </div>
 
         {/* Submit Button */}
-        <button type="submit" className="px-40 mx-auto bg-blue-600 text-white py-2 rounded-lg mt-4">
-          Submit
+        <button
+          type="submit"
+          className="mt-4 bg-blue-500 md:w-[40%] mx-auto text-white p-2 rounded-lg"
+          disabled={isLoading}
+        >
+          {isLoading ? 'Submitting...' : 'Submit'}
         </button>
+
       </form>
     </div>
   );
