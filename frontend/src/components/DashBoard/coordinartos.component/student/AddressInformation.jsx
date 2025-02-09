@@ -82,7 +82,7 @@ export default function AddressInformation({ studentById }) {
         <form onSubmit={handleSubmit} className="w-full p-4 rounded-2xl bg-slate-50 shadow-md mt-4">
             <h1 className="text-md md:text-xl font-semibold text-gray-700">Address Information</h1>
             
-            <div className="flex flex-col md:flex-row gap-2 mt-2">
+            <div className="flex flex-row gap-2 mt-2">
                 {/* Present Address */}
                 <div className="basis-1/2">
                     <h2 className="text-sm md:text-md font-semibold text-gray-700 py-2">Present Address</h2>

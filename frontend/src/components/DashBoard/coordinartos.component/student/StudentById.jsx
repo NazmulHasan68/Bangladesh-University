@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useGetStudentsDataByIdQuery, useUpdateStudentsDataByIdMutation } from '../../../../redux/BustudentApi';
 import PersonalInformation from './PersonalInformation';
 import AddressInformation from './AddressInformation';
+import SemiterInformation from './SemiterInformation';
 
 export default function StudentById() {
   const { studentid } = useParams();
@@ -126,9 +127,10 @@ export default function StudentById() {
   if (error) return <p>Error fetching student details</p>;
 
   return (
-    <div className="p-2 bg-gray-100 min-h-screen w-full h-screen overflow-y-auto">
+    <div className="p-1 bg-gray-100 min-h-screen w-full h-screen overflow-y-auto">
       <h2 className="text-2xl font-semibold mb-2">Update Student Information</h2>
       <PersonalInformation studentById={studentById}/>
+      <SemiterInformation studentById={studentById}/>
       <AddressInformation studentById={studentById}/>
     </div>
   );

@@ -108,7 +108,7 @@ export default function PersonalInformation({ studentById }) {
             </div>
 
             <form onSubmit={handleSubmit} className="w-full basis-2/3">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 sm:grid-cols-2 gap-4">
                     {[
                         "studentname",
                         "fathername",

@@ -4,6 +4,13 @@ import { faker } from "@faker-js/faker"; // Correct import
 dotenv.config();
 import Student from "../Modules/student.models.js";
 
+const subjectPools = [
+    ["Physics", "Math", "Computer Science", "Chemistry", "Biology"],
+    ["English", "History", "Economics", "Geography", "Political Science"],
+    ["Programming", "Data Structures", "Algorithms", "Database Systems", "Operating Systems"],
+    ["AI & ML", "Cybersecurity", "Software Engineering", "Networking", "Cloud Computing"]
+];
+
 // Function to generate random student data
 const generateStudentData = (numStudents = 120) => {
     const students = [];
@@ -65,16 +72,18 @@ const generateStudentData = (numStudents = 120) => {
             }],
             completesemester: faker.number.int({ min: 0, max: 1 }),
             totalcgpa: parseFloat(faker.number.float({ min: 2, max: 4 }).toFixed(2)),
-            semesters: [{
-                semesterName: faker.helpers.arrayElement(["Spring 2025", "Fall 2024"]),
-                subjects: [{
-                    subjectname: faker.helpers.arrayElement(["Physics", "Math", "Computer Science"]),
+
+            semesters: subjectPools.map((subjects, index) => ({
+                semesterName: ["Spring 2025", "Fall 2024", "Summer 2024", "Winter 2023"][index],
+                subjects: subjects.map(subject => ({
+                    subjectname: subject,
                     subjectcode: faker.string.alphanumeric(6).toUpperCase(),
                     subjectcredit: faker.number.int({ min: 3, max: 4 }),
                     subjectgrade: parseFloat(faker.number.float({ min: 2, max: 4 }).toFixed(2)),
                     faculty: faker.person.fullName()
-                }]
-            }],
+                }))
+            })),
+
             currentsemester: "registered",
             reAdmission: "N/A",
             librarystatus: "cleared",
