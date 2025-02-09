@@ -1,4 +1,5 @@
 import Student from "../../Modules/student.models.js";
+import { updateImage } from "../../Untils/imageController.js";
 
 // Student Registration Controller
 export const studentRegister = async (req, res) => {
@@ -119,3 +120,65 @@ export const studentRegister = async (req, res) => {
         });
     }
 };
+
+
+export const getStudentData = async (req, res) => {
+    try {
+        const students = await Student.find();
+        res.status(200).json(students);
+    } catch (error) {
+        console.error(error); 
+        res.status(500).json({ message: "Error fetching student data", error });
+    }
+};
+
+
+export const getStudentById = async(req, res)=>{
+    try {
+        const { studentid } = req.params;
+        const student = await Student.findOne({ studentid });
+        if (!student) {
+            return res.status(404).json({ message: "Student not found" });
+        }
+        res.status(200).json(student);
+    } catch (error) {
+        console.error(error); 
+        res.status(500).json({ message: "Error fetching student data By Id", error });
+    }
+}
+
+
+
+
+export const updateStudentById = async (req, res) => {
+    try {
+      const studentid = Number(req.params.studentid); 
+      if (isNaN(studentid)) {
+        return res.status(400).json({ message: "Invalid student ID format." });
+      }
+
+      const student = await Student.findOne({ studentid });
+      if (!student) {
+        return res.status(404).json({ message: "Student not found." });
+      }
+  
+      const updates = req.body;
+      if (req.file) {
+        updates.studentprofile = req.file.path; 
+       
+      }
+  
+      // Update the student information in the database
+      const updatedStudent = await Student.findOneAndUpdate(
+        { studentid },
+        updates,
+        { new: true, runValidators: true }
+      );
+  
+      res.status(200).json({ message: "Student updated successfully!", updatedStudent });
+    } catch (error) {
+      console.error("Error in updateStudentById:", error);
+      res.status(500).json({ message: "Internal Server Error", error: error.message });
+    }
+  };
+  

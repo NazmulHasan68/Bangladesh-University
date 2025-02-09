@@ -8,7 +8,6 @@ export default function Dashboard() {
     <div className='mt-16 md:mt-24 '>
         <Navigation/>  
         <Outlet/>     
-        <Footer/>
     </div>
   )
 }

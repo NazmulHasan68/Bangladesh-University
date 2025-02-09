@@ -13,10 +13,36 @@ export const studentApi = createApi({
       }),
     }),
 
+    getStudentsData: builder.query({
+      query: () => {
+        return {
+          url: `/students`,
+          method: 'GET',
+        };
+      }
+    }),
+
+    getStudentsDataById: builder.query({
+      query: (studentid) => {
+        URLSearchParams
+        return {
+          url: `/students/${studentid}`,
+          method: 'GET',
+        };
+      },
+    }),
+    
+    updateStudentsDataById: builder.mutation({
+      query: (updatedFormData) => ({
+        url: `/students/${updatedFormData.get("studentid")}`, // Make sure studentid is correctly extracted
+        method: "PUT",
+        body: updatedFormData,
+      }),
+    }),
 
   }),
 });
 
 // Export hook for using the mutation
-export const { useStudentRegisterMutation } = studentApi;
+export const { useStudentRegisterMutation, useGetStudentsDataQuery , useGetStudentsDataByIdQuery, useUpdateStudentsDataByIdMutation} = studentApi;
 

@@ -1,4 +1,5 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { Toaster } from "@/components/ui/toaster"
 import MainLayout from './Layout/MainLayout';
 import Home from './pages/Home';
 import Apply from './pages/Apply';
@@ -78,6 +79,7 @@ import ExamRoutine from './components/DashBoard/examcontroller.component/ExamRou
 import ExamDepartment from './components/DashBoard/examcontroller.component/ExamDepartment';
 import ExamFutureScheedul from './components/DashBoard/examcontroller.component/ExamFutureScheedul';
 import ExamBoard from './components/DashBoard/examcontroller.component/ExamBoard';
+import StudentById from './components/DashBoard/coordinartos.component/student/StudentById';
 
 
 const appRouter = createBrowserRouter([
@@ -123,6 +125,7 @@ const appRouter = createBrowserRouter([
           {path : 'coordinator', element:<Coordinarors/>,
             children : [
               {path : 'student' , element : <StudentDash/>},
+              {path : `student/:studentid`, element:<StudentById/>},
               {path : 'teacher' , element : <TeacherDash/>},
               {path : 'routine' , element : <RoutineDash/>},
               {path : 'subject' , element : <SubjectDash/>},
@@ -134,6 +137,7 @@ const appRouter = createBrowserRouter([
           {path : 'Departmenthead', element:<DepartmentHead/>,
             children : [
               {path : 'student' , element : <StudentDash/>},
+              {path : `student/:studentid`, element:<StudentById/>},
               {path : 'teacher' , element : <TeacherDash/>},
               {path : 'routine' , element : <RoutineDash/>},
               {path : 'subject' , element : <SubjectDash/>},
