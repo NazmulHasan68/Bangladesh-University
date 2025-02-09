@@ -148,8 +148,6 @@ export const getStudentById = async(req, res)=>{
 }
 
 
-
-
 export const updateStudentById = async (req, res) => {
     try {
       const studentid = Number(req.params.studentid); 
@@ -182,3 +180,33 @@ export const updateStudentById = async (req, res) => {
     }
   };
   
+
+export const updateStudentAddress = async (req, res) => {
+    try {
+        const studentid = Number(req.params.studentid); 
+        if (isNaN(studentid)) {
+            return res.status(400).json({ message: "Invalid student ID format." });
+        }
+        
+        const { permanentaddress, presentaddress } = req.body;
+
+        const student = await Student.findOne({ studentid });
+        if (!student) {
+            return res.status(404).json({ message: "Student not found!" });
+        }
+
+        try {
+            student.permanentaddress = JSON.parse(permanentaddress);
+            student.presentaddress = JSON.parse(presentaddress);
+        } catch (e) {
+            return res.status(400).json({ message: "Invalid address format." });
+        }
+
+        await student.save();
+
+        res.status(200).json({ message: "Address information updated successfully!" });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Failed to update address information" });
+    }
+};

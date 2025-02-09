@@ -40,9 +40,23 @@ export const studentApi = createApi({
       }),
     }),
 
+    updateStudentsAddressById: builder.mutation({
+      query: (updatedFormData) => ({
+          url: `/students/address/${updatedFormData.studentid}`,
+          method: "PUT",
+          body: updatedFormData, 
+      }),
+  }),
+
   }),
 });
 
 // Export hook for using the mutation
-export const { useStudentRegisterMutation, useGetStudentsDataQuery , useGetStudentsDataByIdQuery, useUpdateStudentsDataByIdMutation} = studentApi;
+export const {
+   useStudentRegisterMutation, 
+   useGetStudentsDataQuery , 
+   useGetStudentsDataByIdQuery, 
+   useUpdateStudentsDataByIdMutation, 
+   useUpdateStudentsAddressByIdMutation,
+  } = studentApi;
 
