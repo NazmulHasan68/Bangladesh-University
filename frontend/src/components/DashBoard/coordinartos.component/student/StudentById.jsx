@@ -4,6 +4,7 @@ import { useGetStudentsDataByIdQuery, useUpdateStudentsDataByIdMutation } from '
 import PersonalInformation from './PersonalInformation';
 import AddressInformation from './AddressInformation';
 import SemiterInformation from './SemiterInformation';
+import StudentPayemnt from './StudentPayemnt';
 
 export default function StudentById() {
   const { studentid } = useParams();
@@ -132,6 +133,7 @@ export default function StudentById() {
       <PersonalInformation studentById={studentById}/>
       <SemiterInformation studentById={studentById}/>
       <AddressInformation studentById={studentById}/>
+      <StudentPayemnt studentById={studentById}/>
     </div>
   );
 }

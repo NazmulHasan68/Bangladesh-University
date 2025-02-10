@@ -48,10 +48,8 @@ import Dashboard from './pages/dashboard/Dashboard';
 import Teacher from './pages/dashboard/Teacher';
 import Coordinarors from './pages/dashboard/Coordinarors';
 import DepartmentHead from './pages/dashboard/DepartmentHead';
-import ExamControllerComponent from './components/pages Component/Admistration/ExamController/ExamControllerComponent';
 import CenteralController from './pages/dashboard/CenteralController';
 import StudentDash from './components/DashBoard/coordinartos.component/StudentDash';
-import TeacherDash from './components/DashBoard/coordinartos.component/TeacherDash';
 import RoutineDash from './components/DashBoard/coordinartos.component/RoutineDash';
 import SubjectDash from './components/DashBoard/coordinartos.component/SubjectDash';
 import NodeprtTeacherDash from './components/DashBoard/coordinartos.component/NodeprtTeacherDash';
@@ -80,6 +78,7 @@ import ExamDepartment from './components/DashBoard/examcontroller.component/Exam
 import ExamFutureScheedul from './components/DashBoard/examcontroller.component/ExamFutureScheedul';
 import ExamBoard from './components/DashBoard/examcontroller.component/ExamBoard';
 import StudentById from './components/DashBoard/coordinartos.component/student/StudentById';
+import TeacherDash from './components/DashBoard/coordinartos.component/Teacher/TeacherDash';
 
 
 const appRouter = createBrowserRouter([
