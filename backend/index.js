@@ -2,9 +2,10 @@ import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
-import { ConnectDB } from "./Config/database.js"; // Ensure your ConnectDB function is properly set
-import { errorMiddleware } from "./Untils/errorHandler.js"; // Ensure this is implemented
-import studentRoutes from "./Routes/student.routes.js"; // Ensure the routes are correctly set
+import { ConnectDB } from "./Config/database.js"; 
+import { errorMiddleware } from "./Untils/errorHandler.js"; 
+import studentRoutes from "./Routes/student.routes.js"; 
+import teacherRoutes from "./Routes/teacher.routes.js"
 
 dotenv.config();
 const app = express();
@@ -25,6 +26,7 @@ app.use(cors(corsOption));
 
 // API Routes
 app.use('/api/v1/student', studentRoutes);  
+app.use('/api/v1/teacher', teacherRoutes);  
 
 // Server listening on port 5000
 app.listen(5000, async () => {

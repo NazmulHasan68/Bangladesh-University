@@ -1,5 +1,4 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { Toaster } from "@/components/ui/toaster"
 import MainLayout from './Layout/MainLayout';
 import Home from './pages/Home';
 import Apply from './pages/Apply';

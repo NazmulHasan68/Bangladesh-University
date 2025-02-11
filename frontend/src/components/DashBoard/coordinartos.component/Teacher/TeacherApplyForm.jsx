@@ -5,6 +5,9 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { useTeacherRegistrationMutation } from "../../../../redux/BuTeacherApi";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 export default function TeacherApplyForm({ open, setOpen }) {
   const bangladeshLocations = [
@@ -153,15 +156,10 @@ export default function TeacherApplyForm({ open, setOpen }) {
     },
   ];
 
-
   const [formData, setFormData] = useState({
     teachername: '',
     fatherName: '',
     motherName: '',
-    village: '',
-    upozilla: '',
-    district: '',
-    division: '',
     dob: '',
     religion: '',
     phone: null,
@@ -183,22 +181,6 @@ export default function TeacherApplyForm({ open, setOpen }) {
     role: '',
   });
 
-  const [errors, setErrors] = useState({});
-
-  const handleChange = (e) => {
-    const { name, value, files } = e.target;
-    if (name === 'file') {
-      setFormData({ ...formData, [name]: files[0] });
-    } else {
-      setFormData({ ...formData, [name]: value });
-    }
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Add validation and submission logic here
-    console.log(formData);
-  };
 
   const presentDistricts = bangladeshLocations.find(
     (location) => location.division === formData.presentDivision
@@ -215,6 +197,45 @@ export default function TeacherApplyForm({ open, setOpen }) {
   const permanentUpazilas = permanentDistricts.find(
     (district) => district.district === formData.permanentDistrict
   )?.upazilas || [];
+
+
+    const [teacherRegistration, { data, error, isLoading }] = useTeacherRegistrationMutation();
+    const navigate = useNavigate()
+
+    const handleChange = (e) => {
+      const { name, value, files } = e.target;
+      if (name === 'file') { 
+          setFormData({ ...formData, file: files[0] });
+      } else {
+          setFormData({ ...formData, [name]: value });
+      }
+    };
+
+
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+  
+      const submissionData = new FormData();
+  
+      Object.keys(formData).forEach((key) => {
+          if (key === "file") {
+            submissionData.append("file", formData[key]); 
+          } else {
+              submissionData.append(key, formData[key]);
+          }
+      });
+
+      console.log([...submissionData]); 
+  
+      try {
+          await teacherRegistration(submissionData); 
+          toast.success("Added new Teacher");
+          navigate("/dashboard/coordinator/teacher");
+      } catch (error) {
+          console.error("Error during submission", error); 
+      }
+  };
+  
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -234,7 +255,7 @@ export default function TeacherApplyForm({ open, setOpen }) {
               <div>
                 <input
                   type="file"
-                  name="file"
+                  name="file" 
                   onChange={handleChange}
                   className="md:w-28 w-24 h-20 md:h-28 bg-slate-600"
                 />
@@ -318,7 +339,7 @@ export default function TeacherApplyForm({ open, setOpen }) {
                   placeholder="Phone"
                   className="focus:outline-none p-1 border border-gray-300 rounded"
                 />
-                {errors.phone && <p className="text-red-500 text-xs py-2">{errors.phone.message}</p>}
+                {/* {error.phone && <p className="text-red-500 text-xs py-2">{error.phone.message}</p>} */}
               </div>
 
               <div className="flex flex-col">

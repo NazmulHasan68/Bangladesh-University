@@ -1,7 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 
 const addressSchema = new Schema({
-  village: { type: String, required: true, default: "" },
   upozilla: { type: String, required: true, default: "" },
   district: { type: String, required: true, default: "" },
   division: { type: String, required: true, default: "" },
@@ -20,7 +19,7 @@ const teacherSchema = new Schema({
   teachername: { type: String, required: true },
   fathername: { type: String, required: true },
   mothername: { type: String, required: true },
-  studentprofile: { type: String, required: true },
+  teacherProfile: { type: String, required: true , default:"https://www.googleapis.com/auth/userinfo.profile"},
   email: { type: String, required: true, unique: true, index: true },
   phone: { type: String, required: true, unique: true, index: true },
   religion: { type: String, required: true, default: "Islam" },
@@ -51,13 +50,7 @@ const teacherSchema = new Schema({
 
   faculty: {
     depart: { type: String, required: true, default: "cse" },
-    departmenthead: { type: Boolean, required: true, default: false },
-    coordinator: { type: Boolean, required: true, default: false },
-    assistantCoordinator: { type: Boolean, required: true, default: false },
-    assistantTeacher: { type: Boolean, required: true, default: false },
-    seniorTeacher: { type: Boolean, required: true, default: false },
-    partTimeTeacher: { type: Boolean, required: true, default: false },
-    exTeacher: { type: Boolean, required: true, default: false },
+    role : { type : String, required:true, default:'Teacher'},
   },
 
   subjects: { type: [subjectSchema], default: [] },
@@ -102,5 +95,5 @@ const teacherSchema = new Schema({
   },
 },{ timestamps: true });
 
-const Teacher = mongoose.model("Teacher", studentSchema);
+const Teacher = mongoose.model("Teacher", teacherSchema);
 export default Teacher;
