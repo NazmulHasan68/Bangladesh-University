@@ -187,14 +187,21 @@ export default function Navigation() {
                         <img src={logo} alt="logo"/>
                       </NavigationMenuLink>
                     </li>
-                    <ListItem href="/mission" title="Mission and vission" >
-                      To Build a Future Bangladesh university is alaway ready
+                    <ListItem title="Mission and vission">
+                      <Link to={'/mission'} title="Mission and vission">
+
+                        To Build a Future Bangladesh university is alaway ready
+                      </Link>
                     </ListItem>
-                    <ListItem href="/founder" title="Founder">
-                      When Bangladesh University it's star the juorney . it face lots of problem 
+                    <ListItem title="Founder">
+                      <Link to={'/founder'} >
+                        When Bangladesh University it's star the juorney . it face lots of problem 
+                      </Link>
                     </ListItem>
-                    <ListItem href="/leader" title="Leadership and Management">
+                    <ListItem title="Leadership and Management">
+                      <Link to={'/leader'} >
                         here you can see all the leaders of Bangladesh university
+                      </Link>
                     </ListItem>
 
                   </ul>
@@ -230,8 +237,10 @@ export default function Navigation() {
                 <NavigationMenuContent>
                   <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
                     {Admission.map((component) => (
-                      <ListItem key={component.title} title={component.title} href={component.href}>
-                        {component.description}
+                      <ListItem key={component.title} title={component.title}>
+                        <Link to={component.href} title={component.title}>
+                          {component.description}
+                        </Link>
                       </ListItem>
                     ))}
                   </ul>
@@ -243,8 +252,10 @@ export default function Navigation() {
                 <NavigationMenuContent>
                   <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
                     {Administration.map((component) => (
-                      <ListItem key={component.title} title={component.title} href={component.href} className="hover:bg-slate-100 transition-all duration-300">
-                        {component.description}
+                      <ListItem key={component.title}  title={component.title} className="hover:bg-slate-100 transition-all duration-300">
+                        <Link to={component.href} title={component.title}>
+                          {component.description}
+                        </Link>
                       </ListItem>
                     ))}
                   </ul>
