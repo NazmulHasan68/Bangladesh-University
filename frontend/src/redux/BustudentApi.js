@@ -34,7 +34,7 @@ export const studentApi = createApi({
     
     updateStudentsDataById: builder.mutation({
       query: (updatedFormData) => ({
-        url: `/students/${updatedFormData.get("studentid")}`, // Make sure studentid is correctly extracted
+        url: `/students/${updatedFormData.get("studentid")}`,
         method: "PUT",
         body: updatedFormData,
       }),

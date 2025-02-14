@@ -9,11 +9,11 @@ export default function GetTeachersData() {
 
   // Fetch teacher data based on searchId
   const { data, isLoading, error } = useGetTeachersDataQuery();
-    console.log(data);
+
     
   return (
     <div className="overflow-y-auto h-[90%]">
-      {/* ✅ Display Loading and Error Messages */}
+  
       {isLoading ? (
         <p className="text-center text-gray-600 py-4">Loading teachers...</p>
       ) : error ? (
@@ -59,7 +59,7 @@ export default function GetTeachersData() {
               data.map((teacher) => (
                 <TableRow key={teacher._id} style={{ cursor: 'pointer' }}>
                   <TableCell>
-                    <Link to={`/dashboard//coordinatorteacher/${teacher.teacherid}`} className="hover:text-gray-800 text-gray-600">
+                    <Link to={`/dashboard/coordinator/teacher/${teacher.teacherid}`} className="hover:text-gray-800 text-gray-600">
                       {teacher.teacherid}
                     </Link>
                   </TableCell>

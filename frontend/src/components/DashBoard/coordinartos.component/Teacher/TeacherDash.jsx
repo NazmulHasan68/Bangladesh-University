@@ -4,7 +4,7 @@ import TeacherApplyForm from "./TeacherApplyForm";
 import GetTeachersData from "./GetTeachersData";
 
 export default function TeacherDash() {
-  const [open, setOpen] = useState(false); // State to control the dialog
+  const [open, setOpen] = useState(false); 
 
   return (
     <div >
@@ -28,7 +28,7 @@ export default function TeacherDash() {
 
           {/* Add Teacher Button */}
           <button
-            onClick={() => setOpen(true)} // Opens the dialog
+            onClick={() => setOpen(true)} 
             className="text-xs md:text-md bg-blue-600 rounded-3xl text-white py-2 px-4 hover:bg-blue-700"
           >
             Add Teacher

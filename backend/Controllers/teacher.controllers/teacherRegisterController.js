@@ -95,3 +95,87 @@ export const getTeachersData = async(req, res) =>{
         });
     }
 }
+
+export const getSingleTeacher = async(req, res)=>{
+    try {
+        const { teacherid } = req.params;
+        const teacher = await Teacher.findOne({teacherid});
+
+        if (!teacher) {
+            return res.status(404).json({ message: "Teacher not found" });
+        }
+
+        res.status(200).json(teacher);
+    } catch (error) {
+        console.error("Error in Get single teacher teacher:", error);
+        res.status(500).json({
+            message: "Internal Server Error",
+            error: error.message,
+        });
+    }
+}
+
+
+export const EditTeacherData = async (req, res) => {
+    try {
+        const { id } = req.params; // Get teacher ID from request params
+        const {
+            teachername, fatherName, motherName, dob, religion, phone, email, department, role, presentDivision,
+            presentDistrict, presentUpazila, permanentDivision, permanentDistrict, permanentUpazila, graduationversity, 
+            grasubject, graduationcgpa, postversity, postsubject, postcgpa
+        } = req.body;
+
+
+        // Check if teacher exists
+        const teacher = await Teacher.findById(id);
+        if (!teacher) {
+            return res.status(404).json({ message: "Teacher not found" });
+        }
+
+        // Handle file update
+        const image = req.file ? req.file.path : teacher.teacherProfile;
+
+        // Update teacher data
+        teacher.teachername = teachername || teacher.teachername;
+        teacher.fathername = fatherName || teacher.fathername;
+        teacher.mothername = motherName || teacher.mothername;
+        teacher.dob = dob || teacher.dob;
+        teacher.religion = religion || teacher.religion;
+        teacher.phone = phone || teacher.phone;
+        teacher.email = email || teacher.email;
+        teacher.teacherProfile = image;
+        
+        teacher.faculty.depart = department || teacher.faculty.depart;
+        teacher.faculty.role = role || teacher.faculty.role;
+        
+        teacher.presentaddress.upozilla = presentUpazila || teacher.presentaddress.upozilla;
+        teacher.presentaddress.district = presentDistrict || teacher.presentaddress.district;
+        teacher.presentaddress.division = presentDivision || teacher.presentaddress.division;
+        
+        teacher.permanentaddress.upozilla = permanentUpazila || teacher.permanentaddress.upozilla;
+        teacher.permanentaddress.district = permanentDistrict || teacher.permanentaddress.district;
+        teacher.permanentaddress.division = permanentDivision || teacher.permanentaddress.division;
+        
+        teacher.graduation.university = graduationversity || teacher.graduation.university;
+        teacher.graduation.cgpa = graduationcgpa || teacher.graduation.cgpa;
+        teacher.graduation.subject = grasubject || teacher.graduation.subject;
+        
+        teacher.postgraduation.university = postversity || teacher.postgraduation.university;
+        teacher.postgraduation.cgpa = postcgpa || teacher.postgraduation.cgpa;
+        teacher.postgraduation.subject = postsubject || teacher.postgraduation.subject;
+
+        // Save updated teacher data
+        await teacher.save();
+
+        res.status(200).json({
+            message: "Teacher data updated successfully",
+            data: teacher,
+        });
+    } catch (error) {
+        console.error("Error in EditTeacherData:", error);
+        res.status(500).json({
+            message: "Internal Server Error",
+            error: error.message,
+        });
+    }
+};

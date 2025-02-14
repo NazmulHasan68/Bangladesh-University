@@ -78,6 +78,7 @@ import ExamFutureScheedul from './components/DashBoard/examcontroller.component/
 import ExamBoard from './components/DashBoard/examcontroller.component/ExamBoard';
 import StudentById from './components/DashBoard/coordinartos.component/student/StudentById';
 import TeacherDash from './components/DashBoard/coordinartos.component/Teacher/TeacherDash';
+import SingleTeacher from './components/DashBoard/coordinartos.component/Teacher/SingleTeacher';
 
 
 const appRouter = createBrowserRouter([
@@ -125,6 +126,7 @@ const appRouter = createBrowserRouter([
               {path : 'student' , element : <StudentDash/>},
               {path : `student/:studentid`, element:<StudentById/>},
               {path : 'teacher' , element : <TeacherDash/>},
+              {path : 'teacher/:teacherid' , element : <SingleTeacher/>},
               {path : 'routine' , element : <RoutineDash/>},
               {path : 'subject' , element : <SubjectDash/>},
               {path : 'non-dept-teacher' , element : <NodeprtTeacherDash/>},

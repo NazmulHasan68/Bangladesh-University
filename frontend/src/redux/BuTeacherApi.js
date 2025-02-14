@@ -20,7 +20,28 @@ export const teacherApi = createApi({
                 method: "GET",     
             }),
         }),
+
+        getSingleTeacher : builder.query({
+            query : (teacherid) =>({
+                url : `teacher/${teacherid}`,
+                method:"GET",
+            })
+        }),
+
+        editTeacher: builder.mutation({
+            query: (updatedFormData) => ({
+              url: `/teachers/${updatedFormData.get("teacherid")}`,
+              method: "PUT",
+              body: updatedFormData,
+            }),
+          }),
+
+
     }),
 });
 
-export const { useTeacherRegistrationMutation, useGetTeachersDataQuery } = teacherApi;
+export const { useTeacherRegistrationMutation, 
+    useGetTeachersDataQuery , 
+    useGetSingleTeacherQuery,
+    useEditTeacherMutation
+} = teacherApi;
