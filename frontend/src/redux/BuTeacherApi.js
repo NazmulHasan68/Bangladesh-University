@@ -29,12 +29,12 @@ export const teacherApi = createApi({
         }),
 
         editTeacher: builder.mutation({
-            query: (updatedFormData) => ({
-              url: `/teachers/${updatedFormData.get("teacherid")}`,
+            query: ({teacherid, data}) => ({
+              url: `/${teacherid}`,
               method: "PUT",
-              body: updatedFormData,
+              body: data, 
             }),
-          }),
+        }),
 
 
     }),

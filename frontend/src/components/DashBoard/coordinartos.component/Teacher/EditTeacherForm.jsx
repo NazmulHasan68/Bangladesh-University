@@ -10,7 +10,6 @@ export default function EditTeacherForm({ open, setOpen, teacher }) {
   const navigate = useNavigate();
   const fileInputRef = useRef(null);
 
-  // Form state initialization
   const [formData, setFormData] = useState({
     teachername: "",
     fathername: "",
@@ -33,12 +32,11 @@ export default function EditTeacherForm({ open, setOpen, teacher }) {
       division: "",
       postcode: "",
     },
+    teacherid: "",
   });
 
-  // For file preview
-  const [filePreview, setFilePreview] = useState(null);
 
-  // Populate form fields if teacher data is passed
+
   useEffect(() => {
     if (teacher) {
       setFormData({
@@ -49,7 +47,7 @@ export default function EditTeacherForm({ open, setOpen, teacher }) {
         religion: teacher.religion || "",
         phone: teacher.phone || "",
         email: teacher.email || "",
-        file: null,
+        file: teacher.teacherProfile || "",
         faculty: {
           depart: teacher.faculty?.depart || "",
           role: teacher.faculty?.role || "",
@@ -66,33 +64,31 @@ export default function EditTeacherForm({ open, setOpen, teacher }) {
           division: teacher?.permanentaddress?.division || "",
           postcode: teacher?.permanentaddress?.postcode || "",
         },
+        teacherid: teacher?.teacherid || teacherid || "", // Fallback to URL param
       });
-
-      if (teacher.teacherProfile) {
-        setFilePreview(teacher.teacherProfile); // Set file preview if available
-      }
+    } else {
+      console.error("Teacher data is not available");
     }
-  }, [teacher]);
+  }, [teacher, teacherid]);
 
-  // Handle file change (Profile Picture)
   const handleFileChange = (e) => {
     const file = e.target.files[0];
-    if (file) {
+    if (file && file.type.startsWith("image/")) {
       setFormData((prev) => ({ ...prev, file }));
-      setFilePreview(URL.createObjectURL(file)); // Preview the image
+      setFilePreview(URL.createObjectURL(file));
+    } else {
+      toast.error("Please upload a valid image file.");
     }
   };
 
-  // Trigger file input on image click
   const handleImageClick = () => {
     fileInputRef.current.click();
   };
 
-  // Handle form data change for both basic and address fields
   const handleChange = (e) => {
     const { name, value } = e.target;
-    if (name.includes('presentaddress') || name.includes('permanentaddress')) {
-      const [addressType, field] = name.split('.');
+    if (name.includes("presentaddress") || name.includes("permanentaddress")) {
+      const [addressType, field] = name.split(".");
       setFormData((prev) => ({
         ...prev,
         [addressType]: {
@@ -108,7 +104,6 @@ export default function EditTeacherForm({ open, setOpen, teacher }) {
     }
   };
 
-  // Handle faculty-specific fields
   const handleFacultyChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -117,13 +112,16 @@ export default function EditTeacherForm({ open, setOpen, teacher }) {
     }));
   };
 
-  // Submit handler for the form
+ 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
+    if (!formData.teacherid) {
+      toast.error("Teacher ID is missing. Please refresh the page and try again.");
+      return; // Stop submission if teacherid is missing
+    }
+  
     const submissionData = new FormData();
-
-    // Append fields to FormData
     submissionData.append("teachername", formData.teachername);
     submissionData.append("fathername", formData.fathername);
     submissionData.append("mothername", formData.mothername);
@@ -131,31 +129,38 @@ export default function EditTeacherForm({ open, setOpen, teacher }) {
     submissionData.append("religion", formData.religion);
     submissionData.append("phone", formData.phone);
     submissionData.append("email", formData.email);
-    submissionData.append("presentupozilla", formData.presentaddress?.upozilla);
-    submissionData.append("presentdistrict", formData.presentaddress?.district);
-    submissionData.append("presentdivision", formData.presentaddress?.division);
-    submissionData.append("presentpostcode", formData.presentaddress?.postcode);
-    submissionData.append("permanentupozilla", formData.permanentaddress?.upozilla);
-    submissionData.append("permanentdistrict", formData.permanentaddress?.district);
-    submissionData.append("permanentdivision", formData.permanentaddress?.division);
-    submissionData.append("permanentpostcode", formData.permanentaddress?.postcode);
-
-    // Append the file (only if it's selected)
+  
+    if (formData.presentaddress) {
+      submissionData.append("presentupozilla", formData.presentaddress.upozilla);
+      submissionData.append("presentdistrict", formData.presentaddress.district);
+      submissionData.append("presentdivision", formData.presentaddress.division);
+      submissionData.append("presentpostcode", formData.presentaddress.postcode);
+    }
+  
+    if (formData.permanentaddress) {
+      submissionData.append("permanentupozilla", formData.permanentaddress.upozilla);
+      submissionData.append("permanentdistrict", formData.permanentaddress.district);
+      submissionData.append("permanentdivision", formData.permanentaddress.division);
+      submissionData.append("permanentpostcode", formData.permanentaddress.postcode);
+    }
+  
+    submissionData.append("teacherid", formData.teacherid);
+  
     if (formData.file instanceof File) {
       submissionData.append("file", formData.file);
     }
 
-    // Append the faculty object as a JSON string
-    submissionData.append("faculty", JSON.stringify(formData.faculty));
-
-    // Debugging: Log FormData contents
     for (let pair of submissionData.entries()) {
-      console.log(pair[0], pair[1]);
+      const data = (pair[0] + ": " + pair[1]); 
     }
-
+  
+    if (formData.faculty) {
+      submissionData.append("faculty", JSON.stringify(formData.faculty));
+    }
+  
     try {
-      // Call mutation to update teacher data
-      await editTeacher({ teacherid, data: submissionData }).unwrap();
+    
+      await editTeacher({ teacherid: formData.teacherid, data: formData }).unwrap();
       toast.success("Teacher profile updated successfully");
       navigate("/dashboard/coordinator/teacher");
     } catch (error) {
@@ -172,67 +177,124 @@ export default function EditTeacherForm({ open, setOpen, teacher }) {
 
         <form className="flex flex-col gap-4 text-gray-700" onSubmit={handleSubmit}>
           <div className="flex flex-col md:flex-row gap-4 items-center">
-            {/* Profile Picture Preview */}
             <div className="w-32 h-32 relative cursor-pointer" onClick={handleImageClick}>
-              {filePreview ? (
-                <img src={filePreview} alt="Profile Preview" className="w-full h-full object-cover rounded-md" />
+              {formData.file ? (
+                <img src={formData.file} alt="Profile Preview" className="w-full h-full object-cover rounded-md" />
               ) : (
                 <div className="w-32 h-32 bg-gray-300 flex items-center justify-center text-gray-600 rounded-md">
                   No Image
                 </div>
               )}
-              {/* Hidden File Input */}
-              <input type="file" ref={fileInputRef} onChange={handleFileChange} className="hidden" />
+              <input
+                type="file"
+                ref={fileInputRef}
+                onChange={handleFileChange}
+                className="hidden"
+                accept="image/*"
+              />
             </div>
 
-            {/* Basic Information Fields */}
             <div className="grid grid-cols-1 md:grid-cols-2 w-full gap-4">
               <div className="flex flex-col">
                 <label>Name:</label>
-                <input type="text" name="teachername" value={formData.teachername} onChange={handleChange} className="bg-slate-200 p-1 outline-none" />
+                <input
+                  type="text"
+                  name="teachername"
+                  value={formData.teachername}
+                  onChange={handleChange}
+                  className="bg-slate-200 p-1 outline-none"
+                  disabled={isLoading}
+                />
               </div>
 
               <div className="flex flex-col">
                 <label>Father's Name:</label>
-                <input type="text" name="fathername" value={formData.fathername} onChange={handleChange} className="bg-slate-200 p-1 outline-none" />
+                <input
+                  type="text"
+                  name="fathername"
+                  value={formData.fathername}
+                  onChange={handleChange}
+                  className="bg-slate-200 p-1 outline-none"
+                  disabled={isLoading}
+                />
               </div>
 
               <div className="flex flex-col">
                 <label>Email Address:</label>
-                <input type="email" name="email" value={formData.email} onChange={handleChange} className="bg-slate-200 p-1 outline-none" />
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  className="bg-slate-200 p-1 outline-none"
+                  disabled={isLoading}
+                />
               </div>
 
               <div className="flex flex-col">
                 <label>Date of Birth:</label>
-                <input type="date" name="dob" value={formData.dob} onChange={handleChange} className="bg-slate-200 p-1 outline-none" />
+                <input
+                  type="date"
+                  name="dob"
+                  value={formData.dob}
+                  onChange={handleChange}
+                  className="bg-slate-200 p-1 outline-none"
+                  disabled={isLoading}
+                />
               </div>
             </div>
           </div>
 
-          {/* Additional Fields */}
           <div className="grid grid-cols-3 gap-2 mt-2">
             <div className="flex flex-col">
               <label>Religion:</label>
-              <input type="text" name="religion" value={formData.religion} onChange={handleChange} className="bg-slate-200 p-1 outline-none" />
+              <input
+                type="text"
+                name="religion"
+                value={formData.religion}
+                onChange={handleChange}
+                className="bg-slate-200 p-1 outline-none"
+                disabled={isLoading}
+              />
             </div>
 
             <div className="flex flex-col">
               <label>Phone:</label>
-              <input type="text" name="phone" value={formData.phone} onChange={handleChange} className="bg-slate-200 p-1 outline-none" />
+              <input
+                type="text"
+                name="phone"
+                value={formData.phone}
+                onChange={handleChange}
+                className="bg-slate-200 p-1 outline-none"
+                disabled={isLoading}
+              />
             </div>
 
             <div className="flex flex-col">
               <label>Department:</label>
-              <input type="text" name="depart" value={formData.faculty.depart} onChange={handleFacultyChange} className="bg-slate-200 p-1 outline-none" />
+              <input
+                type="text"
+                name="depart"
+                value={formData.faculty.depart}
+                onChange={handleFacultyChange}
+                className="bg-slate-200 p-1 outline-none"
+                disabled={isLoading}
+              />
             </div>
 
             <div className="flex flex-col">
               <label>Role:</label>
-              <input type="text" name="role" value={formData.faculty.role} onChange={handleFacultyChange} className="bg-slate-200 p-1 outline-none" />
+              <input
+                type="text"
+                name="role"
+                value={formData.faculty.role}
+                onChange={handleFacultyChange}
+                className="bg-slate-200 p-1 outline-none"
+                disabled={isLoading}
+              />
             </div>
           </div>
 
-          {/* Address information */}
           <div>
             <h1 className="text-lg font-semibold">Address Information</h1>
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
@@ -240,19 +302,51 @@ export default function EditTeacherForm({ open, setOpen, teacher }) {
                 <h2 className="text-gray-800 py-2 font-semibold">Present Address</h2>
                 <div className="flex flex-col">
                   <label>Upozilla</label>
-                  <input type="text" name="presentaddress.upozilla" value={formData.presentaddress.upozilla} onChange={handleChange} className="bg-slate-200 p-1 outline-none" placeholder="Enter your upozilla" />
+                  <input
+                    type="text"
+                    name="presentaddress.upozilla"
+                    value={formData.presentaddress.upozilla}
+                    onChange={handleChange}
+                    className="bg-slate-200 p-1 outline-none"
+                    placeholder="Enter your upozilla"
+                    disabled={isLoading}
+                  />
                 </div>
                 <div className="flex flex-col">
                   <label>District</label>
-                  <input type="text" name="presentaddress.district" value={formData.presentaddress.district} onChange={handleChange} className="bg-slate-200 p-1 outline-none" placeholder="Enter your district" />
+                  <input
+                    type="text"
+                    name="presentaddress.district"
+                    value={formData.presentaddress.district}
+                    onChange={handleChange}
+                    className="bg-slate-200 p-1 outline-none"
+                    placeholder="Enter your district"
+                    disabled={isLoading}
+                  />
                 </div>
                 <div className="flex flex-col">
-                  <label>Divition</label>
-                  <input type="text" name="presentaddress.division" value={formData.presentaddress.division} onChange={handleChange} className="bg-slate-200 p-1 outline-none" placeholder="Enter your division" />
+                  <label>Division</label>
+                  <input
+                    type="text"
+                    name="presentaddress.division"
+                    value={formData.presentaddress.division}
+                    onChange={handleChange}
+                    className="bg-slate-200 p-1 outline-none"
+                    placeholder="Enter your division"
+                    disabled={isLoading}
+                  />
                 </div>
                 <div className="flex flex-col">
                   <label>Post code</label>
-                  <input type="text" name="presentaddress.postcode" value={formData.presentaddress.postcode} onChange={handleChange} className="bg-slate-200 p-1 outline-none" placeholder="Enter your postcode" />
+                  <input
+                    type="text"
+                    name="presentaddress.postcode"
+                    value={formData.presentaddress.postcode}
+                    onChange={handleChange}
+                    className="bg-slate-200 p-1 outline-none"
+                    placeholder="Enter your postcode"
+                    disabled={isLoading}
+                  />
                 </div>
               </div>
 
@@ -260,29 +354,65 @@ export default function EditTeacherForm({ open, setOpen, teacher }) {
                 <h2 className="text-gray-800 py-2 font-semibold">Permanent Address</h2>
                 <div className="flex flex-col">
                   <label>Upozilla</label>
-                  <input type="text" name="permanentaddress.upozilla" value={formData.permanentaddress.upozilla} onChange={handleChange} className="bg-slate-200 p-1 outline-none" placeholder="Enter your upozilla" />
+                  <input
+                    type="text"
+                    name="permanentaddress.upozilla"
+                    value={formData.permanentaddress.upozilla}
+                    onChange={handleChange}
+                    className="bg-slate-200 p-1 outline-none"
+                    placeholder="Enter your upozilla"
+                    disabled={isLoading}
+                  />
                 </div>
                 <div className="flex flex-col">
                   <label>District</label>
-                  <input type="text" name="permanentaddress.district" value={formData.permanentaddress.district} onChange={handleChange} className="bg-slate-200 p-1 outline-none" placeholder="Enter your district" />
+                  <input
+                    type="text"
+                    name="permanentaddress.district"
+                    value={formData.permanentaddress.district}
+                    onChange={handleChange}
+                    className="bg-slate-200 p-1 outline-none"
+                    placeholder="Enter your district"
+                    disabled={isLoading}
+                  />
                 </div>
                 <div className="flex flex-col">
-                  <label>Divition</label>
-                  <input type="text" name="permanentaddress.division" value={formData.permanentaddress.division} onChange={handleChange} className="bg-slate-200 p-1 outline-none" placeholder="Enter your division" />
+                  <label>Division</label>
+                  <input
+                    type="text"
+                    name="permanentaddress.division"
+                    value={formData.permanentaddress.division}
+                    onChange={handleChange}
+                    className="bg-slate-200 p-1 outline-none"
+                    placeholder="Enter your division"
+                    disabled={isLoading}
+                  />
                 </div>
                 <div className="flex flex-col">
                   <label>Post code</label>
-                  <input type="text" name="permanentaddress.postcode" value={formData.permanentaddress.postcode} onChange={handleChange} className="bg-slate-200 p-1 outline-none" placeholder="Enter your postcode" />
+                  <input
+                    type="text"
+                    name="permanentaddress.postcode"
+                    value={formData.permanentaddress.postcode}
+                    onChange={handleChange}
+                    className="bg-slate-200 p-1 outline-none"
+                    placeholder="Enter your postcode"
+                    disabled={isLoading}
+                  />
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Submit Button */}
-          <button type="submit" className="px-6 py-2 rounded-2xl bg-blue-700 text-white mt-4" disabled={isLoading}>
+          <button
+            type="submit"
+            className="px-6 py-2 rounded-2xl bg-blue-700 text-white mt-4"
+            disabled={isLoading}
+          >
             {isLoading ? "Saving..." : "Save Changes"}
           </button>
         </form>
+
       </DialogContent>
     </Dialog>
   );

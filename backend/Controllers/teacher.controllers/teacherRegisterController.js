@@ -116,53 +116,62 @@ export const getSingleTeacher = async(req, res)=>{
 }
 
 
+
 export const EditTeacherData = async (req, res) => {
     try {
-        const { id } = req.params; // Get teacher ID from request params
+        const { teacherid } = req.params; 
         const {
-            teachername, fatherName, motherName, dob, religion, phone, email, department, role, presentDivision,
-            presentDistrict, presentUpazila, permanentDivision, permanentDistrict, permanentUpazila, graduationversity, 
-            grasubject, graduationcgpa, postversity, postsubject, postcgpa
+            teachername, fathername, mothername, dob, religion, phone, email, 
+            faculty, presentaddress, permanentaddress, 
+            graduation, postgraduation
         } = req.body;
 
-
-        // Check if teacher exists
-        const teacher = await Teacher.findById(id);
+        // Ensure teacher exists
+        const teacher = await Teacher.findOne({ teacherid });
         if (!teacher) {
             return res.status(404).json({ message: "Teacher not found" });
         }
 
-        // Handle file update
-        const image = req.file ? req.file.path : teacher.teacherProfile;
+        // Handle file upload (keep old image if no new file is uploaded)
+        const image = req.file?.path || teacher.teacherProfile;
 
-        // Update teacher data
-        teacher.teachername = teachername || teacher.teachername;
-        teacher.fathername = fatherName || teacher.fathername;
-        teacher.mothername = motherName || teacher.mothername;
-        teacher.dob = dob || teacher.dob;
-        teacher.religion = religion || teacher.religion;
-        teacher.phone = phone || teacher.phone;
-        teacher.email = email || teacher.email;
-        teacher.teacherProfile = image;
-        
-        teacher.faculty.depart = department || teacher.faculty.depart;
-        teacher.faculty.role = role || teacher.faculty.role;
-        
-        teacher.presentaddress.upozilla = presentUpazila || teacher.presentaddress.upozilla;
-        teacher.presentaddress.district = presentDistrict || teacher.presentaddress.district;
-        teacher.presentaddress.division = presentDivision || teacher.presentaddress.division;
-        
-        teacher.permanentaddress.upozilla = permanentUpazila || teacher.permanentaddress.upozilla;
-        teacher.permanentaddress.district = permanentDistrict || teacher.permanentaddress.district;
-        teacher.permanentaddress.division = permanentDivision || teacher.permanentaddress.division;
-        
-        teacher.graduation.university = graduationversity || teacher.graduation.university;
-        teacher.graduation.cgpa = graduationcgpa || teacher.graduation.cgpa;
-        teacher.graduation.subject = grasubject || teacher.graduation.subject;
-        
-        teacher.postgraduation.university = postversity || teacher.postgraduation.university;
-        teacher.postgraduation.cgpa = postcgpa || teacher.postgraduation.cgpa;
-        teacher.postgraduation.subject = postsubject || teacher.postgraduation.subject;
+        // Update teacher fields using Mongoose's `set()`
+        teacher.set({
+            teachername: teachername || teacher.teachername,
+            fathername: fathername || teacher.fathername,
+            mothername: mothername || teacher.mothername,
+            dob: dob || teacher.dob,
+            religion: religion || teacher.religion,
+            phone: phone || teacher.phone,
+            email: email || teacher.email,
+            teacherProfile: image,
+            faculty: {
+                depart: faculty?.depart || teacher.faculty.depart,
+                role: faculty?.role || teacher.faculty.role,
+            },
+            presentaddress: {
+                upozilla: presentaddress?.upozilla || teacher.presentaddress.upozilla,
+                district: presentaddress?.district || teacher.presentaddress.district,
+                division: presentaddress?.division || teacher.presentaddress.division,
+                postcode: presentaddress?.postcode || teacher.presentaddress.postcode,
+            },
+            permanentaddress: {
+                upozilla: permanentaddress?.upozilla || teacher.permanentaddress.upozilla,
+                district: permanentaddress?.district || teacher.permanentaddress.district,
+                division: permanentaddress?.division || teacher.permanentaddress.division,
+                postcode: permanentaddress?.postcode || teacher.permanentaddress.postcode,
+            },
+            graduation: {
+                university: graduation?.university || teacher.graduation.university,
+                cgpa: graduation?.cgpa || teacher.graduation.cgpa,
+                subject: graduation?.subject || teacher.graduation.subject,
+            },
+            postgraduation: {
+                university: postgraduation?.university || teacher.postgraduation.university,
+                cgpa: postgraduation?.cgpa || teacher.postgraduation.cgpa,
+                subject: postgraduation?.subject || teacher.postgraduation.subject,
+            }
+        });
 
         // Save updated teacher data
         await teacher.save();
@@ -171,6 +180,7 @@ export const EditTeacherData = async (req, res) => {
             message: "Teacher data updated successfully",
             data: teacher,
         });
+
     } catch (error) {
         console.error("Error in EditTeacherData:", error);
         res.status(500).json({
@@ -179,3 +189,4 @@ export const EditTeacherData = async (req, res) => {
         });
     }
 };
+
