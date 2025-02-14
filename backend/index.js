@@ -19,7 +19,7 @@ app.use(errorMiddleware);  // Custom error handler middleware
 
 // CORS configuration
 const corsOptions = {
-  origin: ["https://bangladesh-university-beta.vercel.app", "http://localhost:5173"],  // Allow multiple origins
+  origin: ["https://bangladesh-university-xi.vercel.app/", "http://localhost:5173"],  // Allow multiple origins
   credentials: true,  // Allow credentials (cookies, etc.) to be sent
 };
 app.use(cors(corsOptions));  // Apply CORS with the configuration

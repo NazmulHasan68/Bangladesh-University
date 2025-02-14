@@ -4,7 +4,7 @@ export const studentApi = createApi({
   reducerPath: "studentApi",
   baseQuery: fetchBaseQuery({
     baseUrl:  import.meta.env.NODE_ENV === "production"
-      ? "https://bangladesh-university-4zfw.vercel.app/api/v1/student" // Production URL
+      ? "https://bangladesh-university-q3xg.vercel.app/api/v1/student" // Production URL
       : "http://localhost:5000/api/v1/student", // Localhost URL
   }),
   endpoints: (builder) => ({
