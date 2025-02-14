@@ -2,10 +2,10 @@ import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
-import { ConnectDB } from "./Config/database.js"; 
-import { errorMiddleware } from "./Untils/errorHandler.js"; 
-import studentRoutes from "./Routes/student.routes.js"; 
-import teacherRoutes from "./Routes/teacher.routes.js"
+import { ConnectDB } from "./Config/database.js";
+import { errorMiddleware } from "./Untils/errorHandler.js";
+import studentRoutes from "./Routes/student.routes.js";
+import teacherRoutes from "./Routes/teacher.routes.js";
 
 dotenv.config();
 const app = express();
@@ -17,12 +17,11 @@ app.use(cookieParser());  // Middleware to handle cookies
 app.use(errorMiddleware);  // Custom error handler middleware
 
 // CORS configuration
-const corsOption = {
-  origin: "http://localhost:5173", 
-  credentials: true, 
+const corsOptions = {
+  origin: ["https://bangladesh-university-beta.vercel.app", "http://localhost:5173"],  // Allow multiple origins
+  credentials: true,  // Allow credentials (cookies, etc.) to be sent
 };
-app.use(cors());
-app.use(cors(corsOption)); 
+app.use(cors(corsOptions));  // Apply CORS with the configuration
 
 // API Routes
 app.use('/api/v1/student', studentRoutes);  
