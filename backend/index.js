@@ -39,3 +39,7 @@ app.listen(5000, async () => {
   await ConnectDB();  // Connect to the database
   console.log("Server is running on port 5000");
 });
+
+app.get('/', (req, res) => {
+  res.send('Hello, World!');
+});
