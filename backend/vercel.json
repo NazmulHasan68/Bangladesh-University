@@ -6,14 +6,10 @@
         "use": "@vercel/node"
       }
     ],
-    "routes": [
+    "rewrites": [
       {
-        "src": "/api/v1/(.*)",
-        "dest": "/api/v1/$1"
-      },
-      {
-        "src": "/(.*)",
-        "dest": "/"
+        "source": "/api/v1/(.*)",
+        "destination": "/api/v1/$1"
       }
     ],
     "headers": [
@@ -22,7 +18,7 @@
         "headers": [
           {
             "key": "Access-Control-Allow-Origin",
-            "value": "https://bangladesh-university-beta.vercel.app"
+            "value": "https://bangladesh-university-xi.vercel.app/"
           },
           {
             "key": "Access-Control-Allow-Methods",
