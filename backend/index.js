@@ -10,6 +10,7 @@ import teacherRoutes from "./Routes/teacher.routes.js";
 dotenv.config();
 const app = express();
 
+
 // Middleware
 app.use(express.json());  // Parses JSON body
 app.use(express.urlencoded({ extended: true })); // Parses URL-encoded data
@@ -22,6 +23,12 @@ const corsOptions = {
   credentials: true,  // Allow credentials (cookies, etc.) to be sent
 };
 app.use(cors(corsOptions));  // Apply CORS with the configuration
+
+app.use(cors(corsOptions));  // Apply CORS first
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
+app.use(errorMiddleware);
 
 // API Routes
 app.use('/api/v1/student', studentRoutes);  

@@ -2,10 +2,13 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const studentApi = createApi({
   reducerPath: "studentApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "https://bangladesh-university-4zfw.vercel.app/api/v1/student" }),
+  baseQuery: fetchBaseQuery({
+    baseUrl:  import.meta.env.NODE_ENV === "production"
+      ? "https://bangladesh-university-4zfw.vercel.app/api/v1/student" // Production URL
+      : "http://localhost:5000/api/v1/student", // Localhost URL
+  }),
   endpoints: (builder) => ({
-
-    studentRegister: builder.mutation({  // this is student register APi
+    studentRegister: builder.mutation({
       query: (formData) => ({
         url: "/register",
         method: "POST",
@@ -14,27 +17,22 @@ export const studentApi = createApi({
     }),
 
     getStudentsData: builder.query({
-      query: () => {
-        return {
-          url: `/students`,
-          method: 'GET',
-        };
-      }
+      query: () => ({
+        url: "/students",
+        method: 'GET',
+      }),
     }),
 
     getStudentsDataById: builder.query({
-      query: (studentid) => {
-        URLSearchParams
-        return {
-          url: `/students/${studentid}`,
-          method: 'GET',
-        };
-      },
+      query: (studentid) => ({
+        url: `/students/${studentid}`,
+        method: 'GET',
+      }),
     }),
-    
+
     updateStudentsDataById: builder.mutation({
       query: (updatedFormData) => ({
-        url: `/students/${updatedFormData.get("studentid")}`,
+        url: `/students/${updatedFormData.studentid}`,
         method: "PUT",
         body: updatedFormData,
       }),
@@ -42,21 +40,18 @@ export const studentApi = createApi({
 
     updateStudentsAddressById: builder.mutation({
       query: (updatedFormData) => ({
-          url: `/students/address/${updatedFormData.studentid}`,
-          method: "PUT",
-          body: updatedFormData, 
+        url: `/students/address/${updatedFormData.studentid}`,
+        method: "PUT",
+        body: updatedFormData,
       }),
-  }),
-
+    }),
   }),
 });
 
-// Export hook for using the mutation
 export const {
-   useStudentRegisterMutation, 
-   useGetStudentsDataQuery , 
-   useGetStudentsDataByIdQuery, 
-   useUpdateStudentsDataByIdMutation, 
-   useUpdateStudentsAddressByIdMutation,
-  } = studentApi;
-
+  useStudentRegisterMutation, 
+  useGetStudentsDataQuery, 
+  useGetStudentsDataByIdQuery, 
+  useUpdateStudentsDataByIdMutation, 
+  useUpdateStudentsAddressByIdMutation,
+} = studentApi;
