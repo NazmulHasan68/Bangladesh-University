@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const studentApi = createApi({
   reducerPath: "studentApi",
   baseQuery: fetchBaseQuery({
-    baseUrl:"http://localhost:5000/api/v1/student", // Localhost URL
+    baseUrl:"https://bangladesh-university.onrender.com/api/v1/student", // Localhost URL
   }),
   endpoints: (builder) => ({
     studentRegister: builder.mutation({

@@ -20,7 +20,7 @@ app.use(cookieParser());
 
 // CORS configuration
 const corsOptions = {
-  origin: ["https://bangladesh-university-xi.vercel.app", "http://localhost:5173"],
+  origin: ["https://bangladesh-university.onrender.com", "http://localhost:5173"],
   credentials: true,
 };
 app.use(cors(corsOptions));
