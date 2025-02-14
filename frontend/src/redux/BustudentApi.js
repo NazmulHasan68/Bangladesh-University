@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const studentApi = createApi({
   reducerPath: "studentApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000/api/v1/student" }),
+  baseQuery: fetchBaseQuery({ baseUrl: "https://bangladesh-university-4zfw.vercel.app/api/v1/student" }),
   endpoints: (builder) => ({
 
     studentRegister: builder.mutation({  // this is student register APi
