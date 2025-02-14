@@ -3,9 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const teacherApi = createApi({
   reducerPath: "teacherApi",
   baseQuery: fetchBaseQuery({
-    baseUrl:  import.meta.env.NODE_ENV === "production"
-      ? "https://bangladesh-university-q3xg.vercel.app/api/v1/teacher"  // Production URL
-      : "https://bangladesh-university-q3xg.vercel.app/api/v1/teacher",  // Local development URL
+    baseUrl: "http://localhost:5000/api/v1/teacher",  
   }),
   endpoints: (builder) => ({
     teacherRegistration: builder.mutation({
