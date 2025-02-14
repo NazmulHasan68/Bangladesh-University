@@ -1,4 +1,5 @@
 import express from "express";
+import mongoose from "mongoose";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
@@ -19,7 +20,7 @@ app.use(errorMiddleware);  // Custom error handler middleware
 
 // CORS configuration
 const corsOptions = {
-  origin: ["https://bangladesh-university-xi.vercel.app/", "http://localhost:5173"],  // Allow multiple origins
+  origin: ["https://bangladesh-university-xi.vercel.app", "http://localhost:5173"],  // Allow multiple origins
   credentials: true,  // Allow credentials (cookies, etc.) to be sent
 };
 app.use(cors(corsOptions));  // Apply CORS with the configuration
@@ -36,6 +37,7 @@ app.use('/api/v1/teacher', teacherRoutes);
 
 // Server listening on port 5000
 app.listen(5000, async () => {
+  const connection = await mongoose.connect(process.env.MONGO_URI);
   await ConnectDB();  // Connect to the database
   console.log("Server is running on port 5000");
 });
